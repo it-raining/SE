@@ -8,6 +8,6 @@
 | 4  | Lâm Nữ Uyển Nhi  | 2212429  | Content Cell  | 
 | 5  | Hồ Đăng Khoa  | 2211588  | Content Cell  | 
 | 6  | Trương Anh Tuấn  | 2213810  | Content Cell  | 
-| 7  | Content Cell  | Content Cell  | Content Cell  | 
+| 7  | Nguyễn Nguyên Nguyễn  | 2110405  | Content Cell  | 
 
 LATEX: [https://www.overleaf.com/read/sqyhrqxsmfjw#1b4609](https://www.overleaf.com/read/sqyhrqxsmfjw#1b4609)
