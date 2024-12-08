@@ -4,8 +4,12 @@ export const SidebarData = [
         link: "/"
     },
     {
-        title: "In",
+        title: "Danh sách in",
         link: "/print"
+    },
+    {
+        title: "Máy in",
+        link: "/printer"
     },
     {
         title: "Lịch sử",

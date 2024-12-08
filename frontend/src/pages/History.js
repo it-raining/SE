@@ -1,5 +1,6 @@
 import React from 'react';
 import "../App.css";
+import "./History.css";
 
 function History() {
     return(

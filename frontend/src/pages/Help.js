@@ -1,5 +1,6 @@
 import React from 'react';
 import "../App.css";
+import "./Help.css";
 
 function Help() {
     return(
