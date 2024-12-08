@@ -1,6 +1,6 @@
-# CNPM  
+# Member list  
 
-| Stt  | Họ và tên | MSSV | Mail | Nhiệm vụ |
+| STT  | Họ và tên | MSSV | Mail | Nhiệm vụ |
 | ------------- | ------------- | ------------- | ------------- |------------- |
 | 1  | Lê Phan Bảo Như  | 2212466  | nhu.lez055466 | Content Cell  | 
 | 2  | Đỗ Tuấn Anh| 2210050 | Content Cell  |Content Cell  | 
