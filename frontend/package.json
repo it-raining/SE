@@ -1,6 +1,6 @@
 {
   "name": "ssps",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "main": "index.js",
   "private": true,
   "dependencies": {
@@ -8,6 +8,7 @@
     "ajv-keywords": "^5.1.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-native": "^0.76.4",
     "react-router-dom": "^6.28.0",
     "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
