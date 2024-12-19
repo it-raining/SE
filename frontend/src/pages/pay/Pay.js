@@ -11,12 +11,22 @@ function Pay() {
     function fieldSelect(e) {
         setOpt(e.target.value)
     }
+    const filteredStatusList = PaymentList.filter((val) => {
+        if (opt === "all") {
+            return val.status;
+        } else if (opt === "pay") {
+            return val.status === "Pay";
+        } else if (opt === "deposit") {
+            return val.status === "Deposit";
+        } else {
+            return ;
+        }
+    });
     const [soDu, setSoDu] = useState(0); // Số dư ban đầu
     const [soLuaCanNap, setSoLuaCanNap] = useState(""); // Số lúa cần nạp
     const [showConfirmDialog, setShowConfirmDialog] = useState(false); // State to control confirmation dialog visibility
     const [pendingNapLua, setPendingNapLua] = useState(0); // Store the pending amount to be added to the balance
     const [history, setHistory] = useState([]); // Lưu trữ lịch sử nạp tiền
-    const [paymentHistory, setPaymentHistory] = useState([]); // Lưu trữ lịch sử thanh toán
     const handleNapLua = () => {
         const soLua = parseInt(soLuaCanNap, 10); // Chuyển chuỗi thành số nguyên
         if (!isNaN(soLua) && soLua >= 5000) {
@@ -157,8 +167,8 @@ function Pay() {
                     </table>
                 </div>                
                 <div className="list">                        
-                    {PaymentList.length > 0 ? (PaymentList.map((val) => {
-                        return (
+                    {filteredStatusList.length > 0 ? (filteredStatusList.map((val) => {
+                        return (                         
                             <div className="row">
                                 <table>
                                     <tr id={val.status === "Pay" ? "pay" : (val.status === "Deposit" ? "deposit" : "other")}>

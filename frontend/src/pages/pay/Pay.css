@@ -185,6 +185,7 @@ img.currency {
     text-align: center;
     font-size: 15px;
     border: hidden;
+    outline: none;
 }
 
 .Pay .history .head {
@@ -200,7 +201,8 @@ img.currency {
 
 .Pay .history .list {
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
+    scroll-behavior: auto;
     height: calc(100vh - 197px);
 }
 

@@ -1,90 +1,95 @@
+.Login {
+  align-content: center;
+}
+
 .schoolbg {
-  filter: brightness(100%);
-  object-fit: cover;
-  height: 81.3vh;
-  width: 100vw; 
+    filter: brightness(100%);
+    object-fit: cover;
+    height: 81.3vh;
+    width: 100vw; 
 }
 
 h2#login {
-  text-align: center;
-  font-variation-settings: "wdth" 90;
+    text-align: center;
+    font-variation-settings: "wdth" 90;
+    padding-bottom: 24px;
 }
 
 .label {
-  width: 100%; /* Ensure labels span full width */
-  text-indent: 50px;
-  text-align: left;
+    text-indent: 50px;
+    text-align: left;
 }
 
 .login-window {
-  position: fixed;
-  top: calc((99vh - 369px) / 2);
-  left: calc((99vw - 420px) / 2);
-  height: 369px;
-  width: 420px;
-  border-radius: 24px;
-  border-width: 10px;
-  border-color: #032b91;
-  background-color: white;
-  font-weight: 700;
-}
-
-.login-window .login-context {
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  top: 32px;
-  font-weight: 300;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.login-window .login-context button {
-  position: relative;
-  justify-content: center;
-  align-items: center;
-  top: 64px;
-}
-
+    position: fixed;
+    top: calc((99vh - 369px) / 2);
+    left: calc((99vw - 420px) / 2);
+    height: 369px;
+    width: 420px;
+    border-radius: 24px;
+    border-width: 10px;
+    border-color: #032b91;
+    background-color: white;
+    font-weight: 700;
+  }
+  
+  .login-window .login-context {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    top: 32px;
+    font-weight: 300;
+  }
+  
+  .login-window .login-context button{
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    top: 64px;
+  }
+  
 .form-control {
+    position: relative;
+    height: 33px;
+    width: 321px;
+    border-radius: 5px;
+    border-color: #aeaeae;
+    border-style: normal;
+    text-indent: 10px;
+}
+
+.form-control#email {
   position: relative;
-  height: 33px;
-  width: 321px;
-  border-radius: 5px;
-  border-color: #aeaeae;
-  border-style: normal;
-  text-indent: 10px;
+  left: 48px;  
 }
 
-.form-control#username {
-  position: relative;
-  left: 49px;
-}
-
-.email, .password {
-  display: flex;
-  flex-direction: column; /* Stack label and input vertically */
-  align-items: center; /* Center label and input horizontally */
-  padding-top: 20px;
-  height: 50px;
-}
-
+  .email {
+    padding-top: 20px;
+    height: 50px;
+    text-align: center;
+  }
+  
+  .password {
+    padding-top: 20px;
+    height: 50px;
+    text-align: center;
+  }
+  
 .form-submit {
-  text-align: center;
+    text-align: center;
 }
-
 .forgot-password {
-  padding-right: 50px;
-  text-align: right;
-  justify-content: center;
-  text-decoration: underline;
-  color: #7834b3;
+    padding-right: 50px;
+    text-align: right;
+    justify-content: center;
+    text-decoration: underline;
+    color:#7834b3;
 }
 
 button#submit {
-  height: 33px;
-  width: 321px;
-  border-radius: 5px;
-  background-color: #a4caea;
-  border: none;
+    height: 33px;
+    width: 321px;
+    border-radius: 5px;
+    background-color: #a4caea;
+    border: none;
 }
