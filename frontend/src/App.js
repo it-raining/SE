@@ -6,10 +6,12 @@ import Homepage from './pages/homepage/Homepage';
 import Login from './pages/login/Login';
 import History from './pages/history/History';
 import Print from './pages/print/Print';
+import PrinterSelect from './pages/print/printer/printer';
 import NewQuery from './pages/print/new/new';
 import Printer from './pages/printer/Printer';
 import Pay from './pages/pay/Pay';
 import Help from './pages/help/Help';
+import PrinterList from './pages/printer/PrinterList';
 
 function App() {
   const [loginStatus , setLoginStatus] = useState(false);
@@ -36,6 +38,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/print" element={<Print/>} />
             <Route path="/print/new" element={<NewQuery/>} />
+            <Route path="/print/printer" element={<PrinterSelect/>} />
             <Route path="/printer" element={<Printer/>} />
             <Route path="/history" element={<History/>} />
             <Route path="/pay" element={<Pay/>} />

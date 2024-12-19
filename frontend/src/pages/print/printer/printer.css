@@ -1,0 +1,145 @@
+.printer-list {
+    height: calc(100vh - 121px);
+    width: calc(100vw - 169px);
+    font-family: Arial, sans-serif;
+    color: #333;
+  }
+  
+  .steps-header {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .step {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .step.active {
+    color: #007bff;
+  }
+  
+  .printer-container {
+    height: calc(100vh - 121px - 141px);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    scroll-behavior: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 20px;
+  }
+  
+  .printer-item {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #fff;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .printer-item:hover {
+    background-color: #f9f9f9;
+  }
+  
+  .printer-item.selected {
+    border-color: #007bff;
+    background-color: #eaf4ff;
+  }
+  
+  .printer-item.not-compatible {
+    opacity: 0.5;
+    pointer-events: none;
+  }
+  
+  .printer-image {
+    width: 80px;
+    height: 80px;
+    margin-right: 15px;
+    object-fit: contain;
+  }
+  
+  .printer-details {
+    flex: 1;
+  }
+  
+  .printer-details h3 {
+    margin: 0 0 10px;
+    font-size: 16px;
+  }
+  
+  .printer-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px;
+  }
+  
+  .printer-details ul li {
+    font-size: 14px;
+  }
+  
+  .printer-details ul li.check::before {
+    content: "\2714 ";
+    color: green;
+  }
+  
+  .printer-details ul li.cross::before {
+    content: "\2716 ";
+    color: red;
+  }
+  
+  .status {
+    font-weight: bold;
+    color: #555;
+  }
+  
+  .printer-extra-details {
+    padding: 10px 15px;
+    margin-top: -10px;
+    border: 1px solid #ddd;
+    border-top: none;
+    background-color: #f9f9f9;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .actions {
+    height: 40px;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    bottom: 10px;
+  }
+  
+  .back-button {
+    margin-left: 24px;
+    padding: 10px 20px;
+    background-color: #ddd;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .confirm-button {
+    margin-right: 35px;
+    padding: 10px 30px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .confirm-button:hover {
+    background-color: #0056b3;
+  }
