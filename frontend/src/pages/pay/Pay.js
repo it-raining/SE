@@ -8,10 +8,15 @@ import { PaymentList } from './PaymentList';
 
 function Pay() {
     const [opt, setOpt] = useState("all")
-    function fieldSelect(e) {
-        setOpt(e.target.value)
-    }
-    const filteredStatusList = PaymentList.filter((val) => {
+    const [searchVal, setSearchVal] = useState("")
+    function fieldSelect(e) {setOpt(e.target.value)}
+    const filteredSearchList = PaymentList.filter((val) => {
+        if (!searchVal) return val;
+        else {
+            return val.title.includes(searchVal) && val;
+        }
+    });
+    const filteredStatusList = filteredSearchList.filter((val) => {
         if (opt === "all") {
             return val.status;
         } else if (opt === "pay") {
@@ -144,7 +149,7 @@ function Pay() {
                 <div className="filter">
                     <div className="search-bar">
                         <img src={Search} className="search-icon" alt=""/>
-                        <input type='search' id="search" placeholder="Nhập để tìm kiếm..."/>
+                        <input type='search' id="search" onChange={e => setSearchVal(e.target.value)} placeholder="Nhập để tìm kiếm..."/>
                     </div>         
                     <div className="field">
                         <select onChange={fieldSelect}>
