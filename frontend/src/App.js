@@ -98,20 +98,31 @@ function App() {
         <section className="Context">
           <Sidebar/> 
           <Routes>
-            <Route path="/" element={<Homepage/>} />
-            <Route path="/homepage" element={<Homepage/>} />
-            <Route path="/login" element={<Login/>} />
+            
           </Routes>
-          {sessionStorage.getItem("login") && (
+          {(!sessionStorage.getItem("login") && (
             <Routes>
+              <Route path="/" element={<Homepage/>} />
+              <Route path="/homepage" element={<Homepage/>} />
+              <Route path="/login" element={<Login/>} />
+              <Route path="/*" element={<Homepage/>} />
+            </Routes>
+          ))
+          ||
+          (sessionStorage.getItem("login") && (
+            <Routes>
+              <Route path="/" element={<Homepage/>} />
+              <Route path="/homepage" element={<Homepage/>} />
+              <Route path="/login" element={<Login/>} />
               <Route path="/print" element={<Print/>} />
               <Route path="/print/new" element={<NewQuery/>} />
               <Route path="/printer" element={<Printer/>} />
               <Route path="/history" element={<History/>} />
               <Route path="/pay" element={<Pay/>} />
               <Route path="/help" element={<Help/>} />
+              <Route path="/*" element={<Homepage/>} />
             </Routes>
-          )}
+          ))}
         </section>
       </div>
     </BrowserRouter>
