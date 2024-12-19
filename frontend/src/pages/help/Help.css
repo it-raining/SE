@@ -1,0 +1,39 @@
+.Help {
+    background-color: #eef0fc;
+    height: calc(100vh - 121px);
+    width: calc(100vw - 169px);
+}
+
+.Help .help-panel {
+    background-color: white;
+    border: hidden;
+    border-radius: 12px;
+    height: 240px;
+    width: calc(88vw - 169px);
+    margin-top: 30px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Help .help-search {
+    background-color: white;
+    border: 3px solid #032b91;
+    border-radius: 100px;
+    height: 50px;
+    width: calc(69vw - 169px);
+    margin-left: auto;
+    margin-right: auto;
+    align-content: center;
+}
+
+.Help .help-section {
+    height: calc(100vh - 121px - 240px - 120px);
+    width: calc(88vw - 169px);
+}
+
+.Help .help-section .help-request {
+    background-color: white;
+    border: 1 solid black;
+    height: 100%;
+    width: 30%;
+}

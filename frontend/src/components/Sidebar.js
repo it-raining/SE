@@ -5,7 +5,7 @@ import { SidebarData } from "./SidebarData";
 
 function Sidebar() {
     return (
-        <div className="Sidebar">
+        <div className="Sidebar"  style={(window.location.pathname === "/login") ? { display: 'none' } : {}}>
             <ul className="SidebarList">
                 {SidebarData.map((val, key) => {
                     return (
