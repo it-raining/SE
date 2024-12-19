@@ -10,6 +10,7 @@ import NewQuery from './pages/print/new/new';
 import Printer from './pages/printer/Printer';
 import Pay from './pages/pay/Pay';
 import Help from './pages/help/Help';
+import Upload from './pages/print/new/upload';
 
 function App() {
   const [loginStatus , setLoginStatus] = useState(false);
@@ -36,6 +37,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/print" element={<Print/>} />
             <Route path="/print/new" element={<NewQuery/>} />
+            <Route path="/print/upload" element={<Upload/>} />
             <Route path="/printer" element={<Printer/>} />
             <Route path="/history" element={<History/>} />
             <Route path="/pay" element={<Pay/>} />
