@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css';
 import Sidebar from './components/Sidebar';
 import Homepage from './pages/homepage/Homepage';
@@ -105,7 +105,7 @@ function App() {
               <Route path="/" element={<Homepage/>} />
               <Route path="/homepage" element={<Homepage/>} />
               <Route path="/login" element={<Login/>} />
-              <Route path="/*" element={<Homepage/>} />
+              <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
           ))
           ||
@@ -120,7 +120,7 @@ function App() {
               <Route path="/history" element={<History/>} />
               <Route path="/pay" element={<Pay/>} />
               <Route path="/help" element={<Help/>} />
-              <Route path="/*" element={<Homepage/>} />
+              <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
           ))}
         </section>
