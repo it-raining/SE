@@ -7,6 +7,7 @@ import Login from './pages/login/Login';
 import History from './pages/history/History';
 import Print from './pages/print/Print';
 import NewQuery from './pages/print/new/new';
+import Configure from './pages/print/new/configure';
 import Printer from './pages/printer/Printer';
 import Pay from './pages/pay/Pay';
 import Help from './pages/help/Help';
@@ -36,6 +37,7 @@ function App() {
             <Route path="/login" element={<Login/>} />
             <Route path="/print" element={<Print/>} />
             <Route path="/print/new" element={<NewQuery/>} />
+            <Route path="/print/configure" element={<Configure/>} />
             <Route path="/printer" element={<Printer/>} />
             <Route path="/history" element={<History/>} />
             <Route path="/pay" element={<Pay/>} />
