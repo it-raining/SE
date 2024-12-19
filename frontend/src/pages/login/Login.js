@@ -2,51 +2,40 @@ import React, { useState } from 'react';
 import "../../App.css";
 import "./Login.css";
 import BackGround from "../../assets/background.png";
+import { UserList } from "../../UserList";
 
 function Login() {
-  const [username, setUsername] = useState(''); // Username instead of email
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    setError('');
-
-    try {
-      const response = await fetch("http://localhost:5000/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ username, password }), // Send username instead of email
-      });
-
-      if (!response.ok) {
-        const { message } = await response.json();
-        throw new Error(message || "Login failed");
-      }
-
-      const { user } = await response.json();
-      console.log("Login successful:", user);
-      window.location.href = "/homepage"; // Redirect to homepage
-    } catch (err) {
-      setError(err.message);
-    }
-  };
-
-  return (
-    <div className="Login">
-      <img src={BackGround} className="schoolbg" alt="Background" />
+    const [password, setPassword] = useState('');
+    const [username, setUsername] = useState('');
+    
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        const UserAccount = UserList.find((val) => {
+          return val.username === username;
+        });
+        if (!UserAccount) {
+          alert("Username not available.");
+        } else {
+          if (UserAccount.password === password) {
+            window.location.href = "/homepage";
+            return true;
+          } else {
+            alert("Wrong password.");
+          }
+        }
+      };
+    return(
+        <div className="Login">
+      <img src={BackGround} className="schoolbg" alt="" />
       <form className="login-window" onSubmit={handleSubmit}>
         <div className="login-context">
           <h2 id="login">Đăng nhập</h2>
-          {error && <p className="error-message">{error}</p>}
           <div className="username">
             <div className="label">
               <label>Username (Email)</label>
             </div>
             <input
-              type="text" id="username"
+              type="text" id="email"
               className="form-control"
               value={username}
               placeholder="Enter username (email)"
@@ -76,7 +65,7 @@ function Login() {
         </div>
       </form>
     </div>
-  );
+    );
 }
 
 export default Login;
