@@ -29,11 +29,63 @@
 .Help .help-section {
     height: calc(100vh - 121px - 240px - 120px);
     width: calc(88vw - 169px);
+    display: flex;
+    align-content: center;
+    margin-left: auto;
+    margin-right: auto;
+    color: #032b91;
 }
 
 .Help .help-section .help-request {
+    margin-right: 4%;
     background-color: white;
-    border: 1 solid black;
+    border-radius: 12px;
     height: 100%;
-    width: 30%;
+    width: 35%;
+    font-size: 20px;
+    align-content: center;
+}
+
+.Help .help-section .help-request button {
+    background-color: white;
+    border: 3px solid #032b91;
+    border-radius: 100px;
+    height: 50px;
+    width: 80%;
+    font-size: 16px;
+    margin-top: 20px;
+    color: #032b91;
+}
+
+.Help .help-section .help-list {
+    height: calc(100vh - 121px - 240px - 120px);
+    width: 61%;
+    align-content: center;
+}
+
+.Help .help-section .help-list button {
+    display: flex;
+    background-color: #032b91;
+    border: 3px solid white;
+    text-align: left;
+    text-indent: 40px;
+    margin-bottom: 10px;
+    border-radius: 100px;
+    height: calc(100% / 4 - 10px);
+    width: 100%;
+    font-size: 16px;
+    align-content: center;
+    color: white;
+}
+
+.Help .help-section .help-list button p {
+    margin-top: 10px;
+}
+
+.rightarrowwhite {
+    height: 16px;
+    margin-left: auto;
+    position: relative;
+    top: 14px;
+    right: 24px;
 }
