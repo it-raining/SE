@@ -6,7 +6,6 @@ import Homepage from './pages/homepage/Homepage';
 import History from './pages/history/History';
 import Print from './pages/print/Print';
 import NewQuery from './pages/print/new/new';
-// import Upload from './pages/print/new/upload';
 import Printer from './pages/printer/Printer';
 import Pay from './pages/pay/Pay';
 import Help from './pages/help/Help';
