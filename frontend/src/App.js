@@ -23,15 +23,6 @@ import SettingDarkBlue from "./assets/settingdarkblue.png";
 import SupportDarkBlue from "./assets/supportdarkblue.png";
 import ExitRed from "./assets/exitred.png";
 
-
-import { pdfjs } from 'react-pdf';
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url,
-).toString();
-
-
 function Login() {
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
