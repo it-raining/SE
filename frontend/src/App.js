@@ -9,10 +9,27 @@ import NewQuery from './pages/print/new/new';
 import Printer from './pages/printer/Printer';
 import Pay from './pages/pay/Pay';
 import Help from './pages/help/Help';
+import Test from './test';
 
 import "./Login.css";
 import BackGround from "./assets/background.png";
 import { UserList } from "./UserList";
+
+import Avatar from "./assets/avatar.png";
+import Thoc from "./assets/thoc.png";
+import InfoDarkBlue from "./assets/infodarkblue.png";
+import SettingDarkBlue from "./assets/settingdarkblue.png";
+import SupportDarkBlue from "./assets/supportdarkblue.png";
+import ExitRed from "./assets/exitred.png";
+
+
+import { pdfjs } from 'react-pdf';
+
+pdfjs.GlobalWorkerOptions.workerSrc = new URL(
+  'pdfjs-dist/build/pdf.worker.min.mjs',
+  import.meta.url,
+).toString();
+
 
 function Login() {
     const [password, setPassword] = useState('');
@@ -27,8 +44,9 @@ function Login() {
           alert("Username not available.");
         } else {
           if (UserAccount.password === password) {
+              sessionStorage.setItem('username', UserAccount.username);
               sessionStorage.setItem('login', true);
-            window.location.href = "/homepage";
+            window.location.href = "/";
           } else {
             alert("Wrong password.");
           }
@@ -70,7 +88,7 @@ function Login() {
             <button type="submit" id="submit">Confirm</button>
           </div>
           <p className="forgot-password">
-            <a href="#">Quên mật khẩu</a>
+            <a href="#forgot">Quên mật khẩu</a>
           </p>
         </div>
       </form>
@@ -79,32 +97,71 @@ function Login() {
 }
 
 function App() {
-  const [loginStatus , setLoginStatus] = useState(false);
+  const [loginAccess, setLoginAccess] = useState(false);
+  const [showUserPanel, setShowUserPanel] = useState(false);
   return (
     <BrowserRouter>
       <div>
         <header className="Banner">
           <img src={require('./assets/headtitle.png')} className="title" alt="" />
           <nav className="menu-bar" style={(window.location.pathname === "/login" || sessionStorage.getItem('login')) ? { display: 'none' } : {}}>
-            <Link to="/login" onClick={() => setLoginStatus(true)}>Đăng nhập</Link> &nbsp;&nbsp;&nbsp;       
+            <Link to="/login" onClick={() => setLoginAccess(!loginAccess)}>Đăng nhập</Link> &nbsp;&nbsp;&nbsp;       
             <Link to="/contact">Liên hệ</Link> &nbsp;&nbsp;&nbsp;  
           </nav>
-          <div className="avatar" style={(sessionStorage.getItem('login')) ? {} : { display: 'none' }}>
-            <img src={require('./assets/avatar.png')} alt=""/>
+          <div>
+            <img 
+              src={Avatar}
+              className="avatar"
+              onClick={() => setShowUserPanel(!showUserPanel)}
+              alt=""
+              style={(sessionStorage.getItem('login')) ? {} : { display: 'none' }}
+            />
           </div>
         </header>
       </div>
+      {showUserPanel && (
+          <div className="UserPanel">
+            <p id="username">{sessionStorage.getItem('username')}<t style={{color:"#aeaeae", fontWeight:"300", fontSize:"16px"}}>&nbsp;#2210000</t></p>
+            <p id="email">email@hcmut.edu.vn</p>
+            <p id="current">
+              Số dư: <t style={{color:"black", fontWeight:"600", paddingLeft:"16px"}}>123,456</t> 
+              <img src={Thoc} height='20px' style={{marginLeft:"8px", marginRight:"4px"}} alt=""/>
+              <Link to="/pay" id="plus" onClick={() => setShowUserPanel(false)} style={{
+                color:"orange", 
+                fontSize:"24px", 
+                fontWeight:"690"
+                }}>+</Link>
+            </p>
+            <hr width="250px" color="#aeaeae" style={{position:"fixed", top:"240px", right:"80px"}}></hr>
+            <div className="options">
+              <Link to="/info" className="option" onClick={() => setShowUserPanel(false)} id="info">
+                <img src={InfoDarkBlue} className="panel-icon" alt=""/>
+                <p>Tài khoản</p>
+              </Link>
+              <Link to="/setting" className="option" onClick={() => setShowUserPanel(false)} id="setting">
+                <img src={SettingDarkBlue} className="panel-icon" alt=""/>
+                <p>Tùy chỉnh</p>
+              </Link>
+              <Link to="/support" className="option" onClick={() => setShowUserPanel(false)} id="support">
+                <img src={SupportDarkBlue} className="panel-icon" alt=""/>
+                <p>Hỗ trợ</p>
+              </Link>
+              <Link to="/" className="option" onClick={() => {setShowUserPanel(false); sessionStorage.removeItem('login')}} id="exit">
+                <img src={ExitRed} className="panel-icon" alt=""/>
+                <p>Đăng xuất</p>
+              </Link>
+            </div>
+          </div>
+      )}
       <div>
         <section className="Context">
           <Sidebar/> 
-          <Routes>
-            
-          </Routes>
           {(!sessionStorage.getItem("login") && (
             <Routes>
               <Route path="/" element={<Homepage/>} />
               <Route path="/homepage" element={<Homepage/>} />
               <Route path="/login" element={<Login/>} />
+              <Route path="/test" element={<Test/>} />
               <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
           ))
@@ -113,13 +170,13 @@ function App() {
             <Routes>
               <Route path="/" element={<Homepage/>} />
               <Route path="/homepage" element={<Homepage/>} />
-              <Route path="/login" element={<Login/>} />
               <Route path="/print" element={<Print/>} />
               <Route path="/print/new" element={<NewQuery/>} />
               <Route path="/printer" element={<Printer/>} />
               <Route path="/history" element={<History/>} />
               <Route path="/pay" element={<Pay/>} />
               <Route path="/help" element={<Help/>} />
+              <Route path="/test" element={<Test/>} />
               <Route path="/*" element={<Navigate to="/" />} />
             </Routes>
           ))}
