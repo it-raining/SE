@@ -1,0 +1,310 @@
+.Upload {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Upload .file {
+    height: 100%;
+    width: 312px;
+}
+
+.Upload .file .headname {
+    padding-top: 2vh;
+    height: 8vh;
+    font-weight: 500;
+    font-size: 4vh;
+    text-align: center;
+    color: #ffa300;
+}
+
+.Upload .file img#avatar{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: 12vw;
+}
+
+.Upload .file .info {
+    margin-top: 2vh;
+    text-align: center;
+    font-size: 3vh;
+}
+
+.Upload .file .info #uid {
+    font-size: 2vh;
+    color: #aeaeae;
+}
+
+.Upload .file .info .interest {
+    margin-top: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Upload .file .info .interest #text{
+    font-size: 2.4vh;
+}
+
+.Upload .file .info .interest #number{
+    font-size: 4vh;
+}
+
+img.currency {
+    margin-left: 5px;
+    height: 3vh;
+}
+
+.Upload .file .deposit {
+    text-align: center;
+    margin-top: 2vh;
+    height: 32px;
+    font-size: 2.4vh;
+}
+
+.Upload .file .deposit input {
+    border-radius: 1vh;
+    text-indent: 7px;
+    height: 32px;
+    width: 120px;
+    font-size: 2.4vh;
+}
+
+.Upload .file .deposit input::-webkit-outer-spin-button,
+.Upload .file .deposit input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.Upload .file .deposit label#note{
+    font-size: 12px;
+    color: #aeaeae;
+    margin-left: auto;
+}
+
+.Upload .file .deposit button {
+    background-color: rgb(255, 123, 0);
+    border-radius: 5px;
+    border: none;
+    margin-top: 12px;
+    height: 34px;
+    width: 80px;
+    font-size: 2vh;
+    color: white;
+}
+
+.ConfirmDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+  }
+  
+  .ConfirmDialog-content {
+    background-color: white;
+    /* padding: 20px; */
+    padding-bottom:20px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 400px; /* Ensure the dialog has a minimum width */
+    margin:1px;
+    border: 2px solid #B2CEEE; 
+  }
+  
+  .ConfirmDialog-buttons {
+    margin-top: 20px;
+  }
+  .ConfirmDialog-content h4{
+    background-color:#B2CEEE;
+    height:50px;
+   display:flex;
+   justify-content: center;
+   align-items: center; /* Căn giữa dọc */
+   font-size:25px;
+    
+  }
+  .ConfirmDialog-content p{
+    padding-top:10px;
+  }
+  .ConfirmDialog-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+.Upload .information {
+    background-color: #eef0fc;
+    border-left: 1px solid #aeaeae;
+    height: 100%;
+    width: calc(100vw - 485px);
+}
+
+.Upload .information .filter {
+    background-color: white;
+    display: flex;
+    height: 40px;
+}
+
+.Upload .information .filter .search-bar {
+    border-radius: 5px;
+    height: 40px;
+    width: calc(100% - 105px);
+    align-items: center;
+}
+
+.Upload .information .filter .search-bar img.search-icon {
+    padding-left: 12px;
+    height: 16px;
+}
+
+.Upload .information .filter .search-bar #search {
+    border: none;
+    outline: none;
+    margin-top: 5px;
+    height: 30px;
+    width: calc(100% - 42px);
+    padding-left: 8px;
+    font-size: 15px;
+    text-align: left;
+}
+
+.Upload  .information .filter .field {
+    float: left;
+}
+
+.Upload  .information .filter .field select {
+    height: 100%;
+    width: 100px;
+    text-align: center;
+    font-size: 15px;
+    border: hidden;
+}
+
+.Upload .information .head {
+    background-color: white;
+    border-top: 2px solid #032b91;
+    border-bottom: 2px solid #032b91;
+    padding-top: 3px;
+    height: 29px;
+}
+.Upload .information .head table{
+    width: 100%;
+}
+
+.Upload .information .list {
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height: calc(100vh - 197px);
+}
+
+.Upload .information .list .row {
+    background-color: white;
+    border-bottom: 1px solid #032b91;
+    height: 44px;
+}
+
+.Upload .information .list .row table {
+    width: calc(100vw - 312px - 169px);
+}
+
+.Upload .information .list .row table th{
+    padding-top: 10px;
+    font-weight: 300;
+}
+
+.Upload .information div table tr th#title {
+    width: 40%;
+}
+
+.Upload .information div table tr th#time {
+    width: 10%;
+}
+
+.Upload .information div table tr th#date {
+    width: 12%;
+}
+
+.Upload .information div table tr th#id {
+    width: 15%;
+}
+
+.Upload .information div table tr th#amount {
+    width: 10%;
+}
+
+.Upload .information div table tr th#status {
+    width: 13%;
+}
+
+
+/* box upload file */
+.Upload .file .outer-box {
+  padding: 5px; /* Khoảng cách giữa viền liền và viền đứt */
+  border: 2px solid #333; /* Viền liền bên ngoài */
+  border-radius: 12px; /* Bo góc cho viền ngoài */
+  display: inline-block; /* Giữ kích thước gọn gàng */
+  background-color: #fff; /* Nền trắng tổng thể */
+}
+
+/* Lớp chứa viền đứt bên trong */
+.Upload .file .upload-box {
+  width: 200px; /* Chiều rộng hình chữ nhật */
+  height: 150px; /* Chiều cao hình chữ nhật */
+  border: 2px dashed #999; /* Viền đường gạch */
+  border-radius: 10px; /* Bo góc */
+  background-color: #f9f9f9; /* Nền nhạt */
+  display: flex; /* Căn giữa nội dung bên trong */
+  flex-direction: column; /* Sắp xếp theo chiều dọc */
+  justify-content: center; /* Căn giữa dọc */
+  align-items: center; /* Căn giữa ngang */
+  cursor: pointer; /* Hiệu ứng con trỏ khi di chuột */
+  transition: all 0.3s ease; /* Thêm hiệu ứng mượt khi hover */
+}
+
+.Upload .file .upload-box:hover {
+  background-color: #e6f7ff; /* Thay đổi màu nền khi hover */
+}
+
+.Upload .file .upload-icon {
+  font-size: 36px; /* Kích thước biểu tượng */
+  color: #007bff; /* Màu của biểu tượng */
+  margin-bottom: 10px; /* Khoảng cách giữa biểu tượng và chữ */
+}
+
+.Upload .upload-text {
+  font-size: 16px; /* Kích thước chữ */
+  font-weight: 500; /* Độ dày chữ */
+  color: #555; /* Màu chữ */
+}
+
+.Upload .buttons {
+  justify-content: space-between;  /* Giữa các button có khoảng cách */
+  width: 312px;  /* Đặt chiều rộng */
+  margin: 0 auto;  /* Căn giữa */
+  padding: 6px 12px;  /* Padding hợp lý */
+  border-radius: 5px;  /* Bo góc */
+  cursor: pointer;  /* Chỉ báo khi hover */
+  font-size: 12px;  /* Đặt kích thước chữ hợp lý */
+}
+
+.Upload .action_btn {
+  /* width: 48%;  Đặt chiều rộng của mỗi button (giảm đi 4px để tạo khoảng cách) */
+  margin: 0;  /* Bỏ margin không cần thiết */
+  padding: 6px 12px;  /* Padding cho button */
+  border-radius: 5px;  /* Bo góc cho button */
+  cursor: pointer;  /* Con trỏ chuột dạng pointer khi hover */
+  font-size: 12px;  /* Kích thước chữ nhỏ */
+  display: inline-block;
+  width: 32%;
+}
+
+.Upload .action_btn:hover {
+  background-color: #e6f7ff; /* Thay đổi màu nền khi hover */
+}

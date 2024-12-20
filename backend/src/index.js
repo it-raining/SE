@@ -5,7 +5,7 @@ import orderRoutes from "./routes/orderRoutes.js";
 import paymentRoutes from "./routes/paymentRoutes.js";
 import printerRoutes from "./routes/printerRoutes.js";
 import topupRoutes from "./routes/topupRoutes.js";
-import userRoutes from "./routes/userRoutes.js";
+import loginRoutes from "./routes/loginRoutes.js";
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -22,7 +22,8 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/payments", paymentRoutes);
 app.use("/api/printers", printerRoutes);
 app.use("/api/topups", topupRoutes);
-app.use("/api/users", userRoutes);
+// Use the login routes
+app.use("/api/login", loginRoutes);
 
 // Default Route
 app.get("/", (req, res) => {

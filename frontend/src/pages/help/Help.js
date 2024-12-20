@@ -3,6 +3,7 @@ import "../../App.css";
 import "./Help.css";
 import SearchBlue from "../../assets/searchblue.png";
 import RightArrowBlue from "../../assets/rightarrowblue.png";
+import RightArrowWhite from "../../assets/rightarrowwhite.png";
 
 function Help() {
     return(
@@ -36,7 +37,6 @@ function Help() {
                         textIndent: "10px",
                     }}/>
                     <img src={RightArrowBlue} alt="" style={{
-                        top: "20px",
                         height: "20px",
                         paddingLeft: "10px",
                         position: "relative",
@@ -49,6 +49,24 @@ function Help() {
                     <p>Nếu bạn cần gửi yêu cầu mới:</p>
                     <button type="button" id="request">Gửi yêu cầu mới</button>
                     <button type="button" id="list">Danh sách yêu cầu đã gửi</button>
+                </div>
+                <div className="help-list">
+                    <button type="button" id="1">
+                        <p>Tôi không đăng nhập được.</p>
+                        <img src={RightArrowWhite} className="rightarrowwhite" alt=""/>
+                    </button>
+                    <button type="button" id="2">
+                        <p>Tôi nhấn thanh toán nhưng nó không hoạt động.</p>
+                        <img src={RightArrowWhite} className="rightarrowwhite" alt=""/>
+                    </button>
+                    <button type="button" id="3">
+                        <p>Tôi bị mất phương hướng khi sử dụng.</p>
+                        <img src={RightArrowWhite} className="rightarrowwhite" alt=""/>
+                    </button>
+                    <button type="button" id="4">
+                        <p>Tôi không thể nạp vào tài khoản.</p>
+                        <img src={RightArrowWhite} className="rightarrowwhite" alt=""/>
+                    </button>
                 </div>
             </div>
         </div>

@@ -8,15 +8,30 @@ import { PaymentList } from './PaymentList';
 
 function Pay() {
     const [opt, setOpt] = useState("all")
-    function fieldSelect(e) {
-        setOpt(e.target.value)
-    }
+    const [searchVal, setSearchVal] = useState("")
+    function fieldSelect(e) {setOpt(e.target.value)}
+    const filteredSearchList = PaymentList.filter((val) => {
+        if (!searchVal) return val;
+        else {
+            return val.title.includes(searchVal) && val;
+        }
+    });
+    const filteredStatusList = filteredSearchList.filter((val) => {
+        if (opt === "all") {
+            return val.status;
+        } else if (opt === "pay") {
+            return val.status === "Pay";
+        } else if (opt === "deposit") {
+            return val.status === "Deposit";
+        } else {
+            return ;
+        }
+    });
     const [soDu, setSoDu] = useState(0); // Số dư ban đầu
     const [soLuaCanNap, setSoLuaCanNap] = useState(""); // Số lúa cần nạp
     const [showConfirmDialog, setShowConfirmDialog] = useState(false); // State to control confirmation dialog visibility
     const [pendingNapLua, setPendingNapLua] = useState(0); // Store the pending amount to be added to the balance
     const [history, setHistory] = useState([]); // Lưu trữ lịch sử nạp tiền
-    const [paymentHistory, setPaymentHistory] = useState([]); // Lưu trữ lịch sử thanh toán
     const handleNapLua = () => {
         const soLua = parseInt(soLuaCanNap, 10); // Chuyển chuỗi thành số nguyên
         if (!isNaN(soLua) && soLua >= 5000) {
@@ -134,7 +149,7 @@ function Pay() {
                 <div className="filter">
                     <div className="search-bar">
                         <img src={Search} className="search-icon" alt=""/>
-                        <input type='search' id="search" placeholder="Nhập để tìm kiếm..."/>
+                        <input type='search' id="search" onChange={e => setSearchVal(e.target.value)} placeholder="Nhập để tìm kiếm..."/>
                     </div>         
                     <div className="field">
                         <select onChange={fieldSelect}>
@@ -157,8 +172,8 @@ function Pay() {
                     </table>
                 </div>                
                 <div className="list">                        
-                    {PaymentList.length > 0 ? (PaymentList.map((val) => {
-                        return (
+                    {filteredStatusList.length > 0 ? (filteredStatusList.map((val) => {
+                        return (                         
                             <div className="row">
                                 <table>
                                     <tr id={val.status === "Pay" ? "pay" : (val.status === "Deposit" ? "deposit" : "other")}>

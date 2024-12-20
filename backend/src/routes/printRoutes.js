@@ -9,9 +9,9 @@ import {
   updatePrinterStatus,
   getTopups,
   createTopup,
-  getUsers,
   updateUserBalance,
 } from "../controller/printController.js";
+import { loginUser } from "../controller/loginController.js";
 
 const router = express.Router();
 
@@ -35,11 +35,11 @@ const upload = multer({ storage });
 // =======================
 // Routes
 // =======================
-
 // Home route
 router.get("/", (req, res) => {
   res.json({ message: "Welcome to the Print Service Homepage" });
 });
+router.post("/login", loginUser);
 
 // ORDER Routes
 router.post("/print/upload", upload.single("file"), async (req, res) => {

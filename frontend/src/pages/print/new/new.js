@@ -6,6 +6,7 @@ import "./new.css";
 function NewQuery() {
     return(
         <div className="new">
+            
         </div>
     );
 }
