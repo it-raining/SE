@@ -4,7 +4,7 @@ import "../Print.css";
 import "./configure.css";
 
 function Configure() {
-    const [Preview] = useState(require("../../../assets/huh.jpeg")); // Đường dẫn ảnh xem trước (mock data)
+    const [previewSrc, setPreviewSrc] = useState(require("../../../assets/portrait_color.png")); // Ảnh mặc định
     const [selectedAttributes, setSelectedAttributes] = useState({
         fileName: "",
         pageRange: "all", // "all" hoặc "custom"
@@ -20,8 +20,28 @@ function Configure() {
 
     const [currentStep, setCurrentStep] = useState(2); // Quản lý bước hiện tại
 
+    // Hàm xử lý thay đổi thuộc tính và cập nhật preview
     const handleAttributeChange = (key, value) => {
-        setSelectedAttributes({ ...selectedAttributes, [key]: value });
+        const updatedAttributes = { ...selectedAttributes, [key]: value };
+        setSelectedAttributes(updatedAttributes);
+
+        // Xây dựng logic cập nhật preview
+        let newPreviewSrc = require("../../../assets/portrait_color.png");
+
+        const isPortrait = updatedAttributes.orientation === "Portrait";
+        const isColor = updatedAttributes.colorMode === "Màu sắc";
+
+        if (isPortrait && isColor) {
+            newPreviewSrc = require("../../../assets/portrait_color.png");
+        } else if (!isPortrait && isColor) {
+            newPreviewSrc = require("../../../assets/landscape_color.png");
+        } else if (isPortrait && !isColor) {
+            newPreviewSrc = require("../../../assets/portrait_black.png");
+        } else if (!isPortrait && !isColor) {
+            newPreviewSrc = require("../../../assets/landscape_black.png");
+        }
+
+        setPreviewSrc(newPreviewSrc); // Cập nhật ảnh preview
     };
 
     const handleNext = () => {
@@ -45,9 +65,6 @@ function Configure() {
                 <div className={`step ${currentStep === 3 ? "active" : ""}`}>3 Chọn máy</div>
                 <div className={`step ${currentStep === 4 ? "active" : ""}`}>4 Xác nhận</div>
             </div>
-            {/* <div className="headname">
-                <label>Chọn Thuộc Tính In</label>
-            </div> */}
 
             {/* Nội dung chính */}
             <div className="main-content">
@@ -57,7 +74,7 @@ function Configure() {
                         {/* Tên tệp */}
                         <div className="attribute">
                             <label>Tên tệp:</label>
-                            abc.pdf, cringe.pdf,...
+                            Mathematical Modeling.pdf,...
                         </div>
 
                         {/* Chọn trang in */}
@@ -148,8 +165,6 @@ function Configure() {
                             </select>
                         </div>
 
-
-
                         <div className="attribute">
                             <label>Số bản in:</label>
                             <select
@@ -181,7 +196,7 @@ function Configure() {
                         <label>Xem Trước Tệp</label>
                     </div>
                     <div className="preview-image">
-                        <img src={Preview} alt="Preview" />
+                        <img src={previewSrc} alt="Preview" />
                     </div>
                 </div>
             </div>
