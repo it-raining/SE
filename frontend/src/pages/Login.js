@@ -15,7 +15,7 @@ function Login() {
             window.location.href = "/homepage";
             return <div>{access}</div>;
         } else {
-            console.log("Wrong email / password.");
+            console.log("Sai email/mật khẩu");
         }
       };
     return(
@@ -26,17 +26,17 @@ function Login() {
                     <h2 id="login">Đăng nhập</h2>
                     <div className="email">
                         <div className="label">
-                            <label>Email address</label>
+                            <label>Địa chỉ email</label>
                         </div>
                         <input type="email" className="form-control" value={email} placeholder="Enter email" onChange={(e) => setEmail(e.target.value)} required/>
                     </div>
                     <div className="password">
                         <div className="label">
-                            <label>Password</label>
+                            <label>Mật khẩu</label>
                         </div>
                         <input type="password" className="form-control" value={password} placeholder="Enter password" onChange={(e) => setPassword(e.target.value)} required/>
                     </div>
-                    <div className="form-submit"><button type="submit" id="submit">Confirm</button></div>
+                    <div className="form-submit"><button type="submit" id="submit">Xác nhận</button></div>
                     
                     <p className="forgot-password">
                         <a href="#">Quên mật khẩu</a>
