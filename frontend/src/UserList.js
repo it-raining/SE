@@ -6,7 +6,7 @@ export const UserList = [
         current: 50000
     },
     {
-        username: "vergillord",
+        username: "user",
         email: "toibingu@hcmut.edu.vn",
         password: "0",
         current: 40000

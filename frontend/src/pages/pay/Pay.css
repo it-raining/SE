@@ -1,0 +1,247 @@
+.Pay {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.Pay .panel {
+    height: 100%;
+    width: 312px;
+}
+
+.Pay .panel .headname {
+    padding-top: 2vh;
+    height: 8vh;
+    font-weight: 500;
+    font-size: 4vh;
+    text-align: center;
+    color: #ffa300;
+}
+
+.Pay .panel img#avatar{
+    display: flex;
+    margin-left: auto;
+    margin-right: auto;
+    height: 12vw;
+}
+
+.Pay .panel .info {
+    margin-top: 2vh;
+    text-align: center;
+    font-size: 3vh;
+}
+
+.Pay .panel .info #uid {
+    font-size: 2vh;
+    color: #aeaeae;
+}
+
+.Pay .panel .info .interest {
+    margin-top: 2vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Pay .panel .info .interest #text{
+    font-size: 2.4vh;
+}
+
+.Pay .panel .info .interest #number{
+    font-size: 4vh;
+}
+
+img.currency {
+    margin-left: 5px;
+    height: 3vh;
+}
+
+.Pay .panel .deposit {
+    text-align: center;
+    margin-top: 2vh;
+    height: 32px;
+    font-size: 2.4vh;
+}
+
+.Pay .panel .deposit input {
+    border-radius: 1vh;
+    text-indent: 7px;
+    height: 32px;
+    width: 120px;
+    font-size: 2.4vh;
+}
+
+.Pay .panel .deposit input::-webkit-outer-spin-button,
+.Pay .panel .deposit input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.Pay .panel .deposit label#note{
+    font-size: 12px;
+    color: #aeaeae;
+    margin-left: auto;
+}
+
+.Pay .panel .deposit button {
+    background-color: rgb(255, 123, 0);
+    border-radius: 5px;
+    border: none;
+    margin-top: 12px;
+    height: 34px;
+    width: 80px;
+    font-size: 2vh;
+    color: white;
+}
+
+.ConfirmDialog {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center; /* Centers horizontally */
+    align-items: center; /* Centers vertically */
+  }
+  
+  .ConfirmDialog-content {
+    background-color: white;
+    /* padding: 20px; */
+    padding-bottom:20px;
+    border-radius: 8px;
+    text-align: center;
+    min-width: 400px; /* Ensure the dialog has a minimum width */
+    margin:1px;
+    border: 2px solid #B2CEEE; 
+  }
+  
+  .ConfirmDialog-buttons {
+    margin-top: 20px;
+  }
+  .ConfirmDialog-content h4{
+    background-color:#B2CEEE;
+    height:50px;
+   display:flex;
+   justify-content: center;
+   align-items: center; /* Căn giữa dọc */
+   font-size:25px;
+    
+  }
+  .ConfirmDialog-content p{
+    padding-top:10px;
+  }
+  .ConfirmDialog-buttons button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+.Pay .history {
+    background-color: #eef0fc;
+    border-left: 3px solid #032b91;
+    height: 100%;
+    width: calc(100vw - 485px);
+}
+
+.Pay .history .filter {
+    background-color: white;
+    display: flex;
+    height: 40px;
+}
+
+.Pay .history .filter .search-bar {
+    border-radius: 5px;
+    height: 40px;
+    width: calc(100% - 105px);
+    align-items: center;
+}
+
+.Pay .history .filter .search-bar img.search-icon {
+    padding-left: 12px;
+    height: 16px;
+}
+
+.Pay .history .filter .search-bar #search {
+    border: none;
+    outline: none;
+    margin-top: 5px;
+    height: 30px;
+    width: calc(100% - 42px);
+    padding-left: 8px;
+    font-size: 15px;
+    text-align: left;
+}
+
+.Pay  .history .filter .field {
+    float: left;
+}
+
+.Pay  .history .filter .field select {
+    height: 100%;
+    width: 100px;
+    text-align: center;
+    font-size: 15px;
+    border: hidden;
+    outline: none;
+}
+
+.Pay .history .head {
+    background-color: white;
+    border-top: 2px solid #032b91;
+    border-bottom: 2px solid #032b91;
+    padding-top: 3px;
+    height: 29px;
+}
+.Pay .history .head table{
+    width: 100%;
+}
+
+.Pay .history .list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: auto;
+    height: calc(100vh - 197px);
+}
+
+.Pay .history .list .row {
+    background-color: white;
+    border-bottom: 1px solid #032b91;
+    height: 44px;
+}
+
+.Pay .history .list .row table {
+    width: calc(100vw - 312px - 169px);
+}
+
+.Pay .history .list .row table th{
+    padding-top: 10px;
+    font-weight: 300;
+}
+
+.Pay .history div table tr th#title {
+    width: 40%;
+}
+
+.Pay .history div table tr th#time {
+    width: 10%;
+}
+
+.Pay .history div table tr th#date {
+    width: 12%;
+}
+
+.Pay .history div table tr th#id {
+    width: 15%;
+}
+
+.Pay .history div table tr th#amount {
+    width: 10%;
+}
+
+.Pay .history div table tr th#status {
+    width: 13%;
+}
+

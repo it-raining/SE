@@ -1,0 +1,45 @@
+.Context {
+    display: flex;
+    font: "Inter";
+}
+  
+.Homepage .schoolfield {
+    object-fit: cover;
+    height: 55vh;
+    width: calc(100vw - 169px); 
+}
+
+p#home {
+    position: relative;
+    top: 3vh;
+    bottom: 3vh;
+    white-space: pre-line;
+    font-size: 3vh;
+    color: #2e2edf;
+    text-indent: 24px;
+}
+
+p#leftfixed {
+    position: fixed;
+    bottom: 1vh;
+    left: calc(169px + 24px);
+    white-space: pre-line;
+    font-size: 16px;
+    font-style: italic;
+    color: #aeaeae;
+    text-indent: 0px;
+}
+
+p#rightfixed {
+    position: fixed;
+    bottom: 1vh;
+    right: 12px;
+    white-space: pre-line;
+    font-size: 16px;
+    font-style: italic;
+    color: #aeaeae;
+    text-indent: 0px;
+}
+
+
+  
