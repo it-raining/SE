@@ -48,7 +48,7 @@ h2#login {
     top: 64px;
   }
   
-.form-control {
+  .form-control {
     position: relative;
     height: 33px;
     width: 321px;
@@ -63,6 +63,7 @@ h2#login {
 }
 
   .email {
+    margin-left: 10px;
     padding-top: 20px;
     height: 50px;
     text-align: center;
@@ -73,7 +74,7 @@ h2#login {
     height: 50px;
     text-align: center;
   }
-  
+
 .form-submit {
     text-align: center;
 }
@@ -91,4 +92,5 @@ button#submit {
     border-radius: 5px;
     background-color: #a4caea;
     border: none;
+    font-size: 15px;
 }

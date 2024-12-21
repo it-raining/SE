@@ -1,40 +1,43 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../../../App.css";
 import "../Print.css";
 import "./upload.css";
-import { useState } from "react";
 
 function Upload() {
-    const [fileList, setFileList] = useState([]); // Danh sách file tải lên
+    const [fileList, setFileList] = useState([]); 
+    const [errorMessage, setErrorMessage] = useState(""); 
 
-    // Thêm tệp mới
+    const validFormats = [".doc", ".docx", ".pdf", ".png"];
+
     const handleAddFile = (event) => {
-        const file = event.target.files[0]; // Lấy file từ input
+        const file = event.target.files[0]; 
         if (file) {
-            setFileList([...fileList, { name: file.name, id: Date.now() }]);
+            const fileExtension = file.name.split('.').pop().toLowerCase(); 
+            if (validFormats.includes(`.${fileExtension}`)) {
+                setFileList([...fileList, { name: file.name, id: Date.now() }]);
+                setErrorMessage(""); 
+            } else {
+                setErrorMessage("Định dạng tệp không hợp lệ. Vui lòng chọn tệp .doc, .docx, .pdf, hoặc .png.");
+            }
         }
     };
 
-    const nextAction = (event) => {
-        sessionStorage.setItem('file', JSON.stringify(fileList));    
-    }
-
-    // Xóa tệp
     const handleRemoveFile = (id) => {
         setFileList(fileList.filter((file) => file.id !== id));
     };
 
-    // Hủy (xóa toàn bộ danh sách file)
     const handleCancel = () => {
         setFileList([]);
         window.location.href = "/print";
     };
 
-    // Tiếp theo
+    const nextAction = () => {
+        sessionStorage.setItem('file', JSON.stringify(fileList));
+    };
+
     return (
         <div className="Upload">
-            {/* Header */}
             <div className="steps-header">
                 <div className="step active">1. Tải tệp tin</div>
                 <div className="step">2. Thiết đặt</div>
@@ -42,9 +45,7 @@ function Upload() {
                 <div className="step">4. Xác nhận</div>
             </div>
 
-            {/* Nội dung */}
             <div className="upload-container">
-                {/* Panel bên trái */}
                 <div className="upload-left">
                     <div className="upload-box">
                         <input
@@ -62,19 +63,25 @@ function Upload() {
                             </div>
                         </label>
                     </div>
+                    {errorMessage && (
+                        <p style={{ color: "red", marginTop: "10px" }}>{errorMessage}</p>
+                    )}
                     <div className="navigation-buttons">
                         <button className="cancel-button" onClick={handleCancel}>
                             Hủy
                         </button>
                         <Link to="/print/configure">
-                            <button className="next-button" disabled={fileList.length === 0} onClick={() => nextAction()}>
+                            <button
+                                className="next-button"
+                                disabled={fileList.length === 0}
+                                onClick={nextAction}
+                            >
                                 Tiếp Theo
                             </button>
                         </Link>
                     </div>
                 </div>
 
-                {/* Panel bên phải */}
                 <div className="upload-right">
                     <div className="file-list-title">
                         <label>Danh sách file</label>

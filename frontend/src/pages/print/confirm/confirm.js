@@ -1,6 +1,7 @@
 import React, {useState} from "react";
+import { Link } from 'react-router-dom';
+import "./confirm.css";
 import DocumentDetail from "../../../components/DocumentDetail";
-import Huh from "../../../assets/huh.jpg";
 import Thoc from "../../../assets/thoc.png";
 
 function Confirm () {
@@ -21,7 +22,7 @@ function Confirm () {
         <div className="Confirm">
             <DocumentDetail
                 fileType="img"
-                filePath={Huh}
+                filePath={JSON.parse(sessionStorage.getItem('preview'))}
                 fileName={fileList[index].name}
                 fileCount={fileList.length}
                 printer={sessionStorage.getItem('printer')}
@@ -32,12 +33,12 @@ function Confirm () {
                 toggle={true}
             />
             <div>
-                <div className="current">
-                    <div id="pay"> <p>Số lúa cần trả: tien</p> <img src={Thoc} alt=""/> </div>
-                    <div id="current"> <p>Số lúa hiện tại: tien</p> <img src={Thoc} alt=""/> </div>
+                <div className="panel">
+                    <div id="pay"> <p>Số lúa cần trả: tien</p> <img src={Thoc} className="thoc" alt=""/> </div>
+                    <div id="current"> <p>Số lúa hiện tại: tien</p> <img src={Thoc} className="thoc" alt=""/> </div>
+                    <Link></Link><button id="confirm"></button>
+                    <button id="back"></button> 
                 </div>
-                <button id="confirm"></button>
-                <button id="back"></button> 
             </div>
         </div>
     )

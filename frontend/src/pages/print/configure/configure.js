@@ -6,17 +6,22 @@ import "./configure.css";
 
 function Configure() {
     const fileList = JSON.parse(sessionStorage.getItem('file'));
-	const [previewSrc, setPreviewSrc] = useState(require("../../../assets/portrait.png"));
     const file = fileList.reduce((acc, curr) => {
         acc["name"] = acc["name"] ? [...acc["name"], curr.name + ", "] : [curr.name + ", "];
         return acc;
     }, {});
 
-    const [Preview] = useState(require("../../../assets/huh.jpg")); // Đường dẫn ảnh xem trước (mock data)
+    const [Portrait] = useState(require("../../../assets/portrait.png"));
+    const [Landscape] = useState(require("../../../assets/landscape.png"));
+
+    const previewHandle = () => {
+        return ((selectedAttributes.orientation === "Portrait") ? Portrait : Landscape);
+    }
+
     const [selectedAttributes, setSelectedAttributes] = useState({
-        fileName: file.name,
+        fileName: file.name ,
         pageRange: "all", // "all" hoặc "custom"
-        pagesToPrint: "",
+        pagesToPrint: "16",
         orientation: "Portrait",
         pagesPerSheet: "1",
         collate: "Yes",
@@ -26,37 +31,21 @@ function Configure() {
         copies: "1",
     });
 
-    const [currentStep, setCurrentStep] = useState(2); // Quản lý bước hiện tại
+    const [currentStep, setCurrentStep] = useState(2);
 
-    // Hàm xử lý thay đổi thuộc tính và cập nhật preview
     const handleAttributeChange = (key, value) => {
         const updatedAttributes = { ...selectedAttributes, [key]: value };
         setSelectedAttributes(updatedAttributes);
-
-        // Xây dựng logic cập nhật preview
-        let newPreviewSrc = require("../../../assets/portrait.png");
-
-        const isPortrait = updatedAttributes.orientation === "Portrait";
-        const isColor = updatedAttributes.colorMode === "colored";
-
-        if (isPortrait && isColor) {
-            newPreviewSrc = require("../../../assets/portrait.png");
-        } else if (!isPortrait && isColor) {
-            newPreviewSrc = require("../../../assets/landscape.png");
-        } 
-
-        setPreviewSrc(newPreviewSrc); // Cập nhật ảnh preview
-    };
+    }
 
     const handleNext = () => {
-        if (currentStep < 4) {
-            setCurrentStep(currentStep + 1);
-        }
+        sessionStorage.setItem('detail', JSON.stringify(selectedAttributes));
+        sessionStorage.setItem('preview', JSON.stringify(previewHandle()));
     };
 
     const handleBack = () => {
         if (currentStep > 1) {
-            setCurrentStep(currentStep - 1);
+            setCurrentStep(currentStep);
         }
     };
 
@@ -79,6 +68,7 @@ function Configure() {
                         <div className="attribute">
                             <label>Tên tệp:</label>
                             {selectedAttributes.fileName}
+                            {JSON.parse(JSON.stringify(selectedAttributes)).pageRange}
                         </div>
 
                         {/* Chọn trang in */}
@@ -169,6 +159,8 @@ function Configure() {
                             </select>
                         </div>
 
+
+
                         <div className="attribute">
                             <label>Số bản in:</label>
                             <select
@@ -204,7 +196,10 @@ function Configure() {
                         <label>Xem Trước Tệp</label>
                     </div>
                     <div className="preview-image">
-                        <img src={previewSrc} alt="Preview" />
+                        <img alt="Preview"
+                            src={previewHandle()}
+                            id={selectedAttributes.colorMode}
+                        />
                     </div>
                 </div>
             </div>
