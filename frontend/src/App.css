@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wdth,wght@0,75..100,300..800;1,75..100,300..800&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.Content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: calc(100vh - 121px);
+  width: calc(100vw - 169px);
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+body {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  position: relative;
+  left: 30px;
+  width: 800px;   
+}
+
+.avatar {
+  padding-right: 30px;
+  padding-top: 10px;
+}
+
+.Banner {
+  background-color: #032b91;
+  height: 121px; 
+  font-size: 20px;
+  margin-bottom: auto;
+}
+
+.Banner .menu-bar {
+  margin-left: auto;
+}
+
+.Banner .menu-bar a {
+  text-decoration: none;
+  color: white;
+  font-weight: medium;
+  text-decoration: underline;
+}
+
+.Banner .menu-bar a:hover {
+  color: #007BFF;
+}
+
+
+.UserPanel {
+  background-color: white;
+  border: 2px solid #032b91;
+  border-radius: 12px;
+  position: fixed;
+  top: 121px;
+  right: 30px;
+  height: 200px;
+  width: 350px;
+}
+
+.UserPanel p#username, #email, #current {
+  margin-left: 40px;
+  color: #032b91;
+}
+
+.UserPanel p#username {
+  font-size: 32px;
+  font-weight: 500;
+  margin-top: 8px;
+}
+
+.UserPanel p#email {
+  color: #aeaeae;
+  font-weight: 300;
+  margin-top: -5px;
+}
+
+.UserPanel p#current {
+  font-size: 20px;
+  margin-top: 3px;
+}
+
+.UserPanel .options .panel-icon {
+  object-fit: contain;
+  height: 20px;
+  width: 20px;
+}
+
+.UserPanel .options {
+  height: 80px;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 16px;
+  display: flex;
+  flex-direction: column;
+} 
+
+.UserPanel .options .option {
+  width: 110px;
+  display: flex;
+}
+
+.UserPanel .options .option p {
+  text-indent: 10px;
+  color: #032b91;
+}
+
+.UserPanel .options .option#logout p {
+  color: red;
+}
+
+.UserPanel .options .option#info,
+.UserPanel .options .option#support {
+  position: relative;
+  margin-right: auto;
+  display: flexbox;
+  align-self: flex-start;
+}
+
+.UserPanel .options .option#setting,
+.UserPanel .options .option#logout {
+  position: relative;
+  margin-left: auto;
+  display: flexbox;
+  align-self: flex-start;
+}

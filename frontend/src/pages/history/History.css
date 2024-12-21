@@ -1,0 +1,73 @@
+.History {
+    overflow: hidden;
+    height: calc(100vh - 121px);
+    width: calc(100vw - 169px);
+}
+
+.History .tab-list {
+    height: 50px;
+}
+
+.History .tab-list button {
+    height: 100%;
+    width: 50%;
+    font-size: 20px;
+}
+
+.History .tab-list button p {
+    display: inline-block;
+}
+
+.History .tab-list button .notif {
+    background-color: red;
+    height: 24px;
+    width: 24px;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+}
+
+.History .list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: auto;
+    height: calc(100% - 50px);
+}
+
+.History .list .row {
+    border-bottom: 1px solid #aeaeae;
+    background-color: white;
+    height: 120px;
+    width: 100%;
+    padding-left: 32px;
+    font-weight: 350;
+    font-size: 20px;
+    color: black;
+}
+
+
+.History img#picture {
+    object-fit: contain;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    top: 10px;
+}
+
+.History .info {
+    height: 120px;
+    width: calc(100% - 140px);
+    display: inline-block;
+}
+
+.History .info .title {
+    position: relative;
+    bottom: 30px;
+}
+
+.History .row#printing .info progress{
+    width: calc(100% - 140px);
+    margin-left: 32px;
+}

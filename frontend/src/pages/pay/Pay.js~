@@ -1,0 +1,154 @@
+import React, { useState } from "react";
+import "../../App.css";
+import "./Pay.css";
+import Avatar from "../../assets/avatar.png";
+
+function Pay() {
+  const [soDu, setSoDu] = useState(0); // Số dư ban đầu
+  const [soLuaCanNap, setSoLuaCanNap] = useState(""); // Số lúa cần nạp
+  const [showConfirmDialog, setShowConfirmDialog] = useState(false); // State to control confirmation dialog visibility
+  const [pendingNapLua, setPendingNapLua] = useState(0); // Store the pending amount to be added to the balance
+  const handleNapLua = () => {
+    const soLua = parseInt(soLuaCanNap, 10); // Chuyển chuỗi thành số nguyên
+    if (!isNaN(soLua) && soLua >= 5000) {
+      setPendingNapLua(soLua); // Store the amount to be confirmed
+      setShowConfirmDialog(true); // Show the confirmation dialog
+      setSoLuaCanNap(""); // Reset input field
+    } else {
+      alert("Vui lòng nhập số lúa hợp lệ (tối thiểu 5000 Lúa)!");
+    }
+  };
+
+  const handleConfirm = () => {
+    // Thêm số lúa vào số dư
+    setSoDu(soDu + pendingNapLua); 
+
+    // Đóng dialog và reset trạng thái
+    setShowConfirmDialog(false);
+    setPendingNapLua(0);
+  };
+
+  const handleCancel = () => {
+    setShowConfirmDialog(false); // Close the dialog without changes
+    setPendingNapLua(0); // Reset pending amount
+  };
+
+  return (
+    <div className="Pay">
+      <div className="Payment">
+        <p>Thanh toán </p>
+      </div>
+
+      <div className="Info">
+        <div className="Info-image">
+          <img src={Avatar} alt="Avatar" />
+        </div>
+
+        <div className="Info-content">
+          <h3>Họ và tên</h3>
+          <h3>Số dư: {soDu.toLocaleString()} 🌾</h3>
+        </div>
+      </div>
+
+      <div className="Nap">
+        <div className="Need">
+          <label htmlFor="soLuaCanNap"><b>Số lúa cần nạp: </b></label>
+          <input
+            type="number"
+            id="soLuaCanNap"
+            value={soLuaCanNap}
+            onChange={(e) => setSoLuaCanNap(e.target.value)}
+            style={{
+              marginLeft: "10px",
+              padding: "5px",
+              borderRadius: "4px",
+              border: "1px solid #ccc",
+              height: "30px"
+            }}
+            placeholder="Nhập số lúa"
+          />
+          <p>Tối thiểu 5000 Lúa</p>
+        </div>
+
+        <div className="NhanNap">
+          <button
+            onClick={handleNapLua}
+            style={{
+              padding: "10px 20px",
+              backgroundColor: "#4CAF50",
+              color: "white",
+              border: "none",
+              borderRadius: "4px",
+              cursor: "pointer",
+            }}
+          >
+            Nạp Lúa
+          </button>
+          <p>1,000VND = 1000 lúa</p>
+        </div>
+      </div>
+
+      {/* Confirmation Dialog */}
+      {showConfirmDialog && (
+        <div className="ConfirmDialog">
+          <div className="ConfirmDialog-content">
+            <h4>Xác nhận nạp lúa</h4>
+            <p>Số lúa: <b>{pendingNapLua.toLocaleString()}</b> </p>
+            <p>Số tiền cần trả: <b>{pendingNapLua.toLocaleString()} VND</b></p>
+            <div className="ConfirmDialog-buttons">
+              <button onClick={handleConfirm} style={{ backgroundColor: "#4CAF50", color: "white" }}>Xác nhận</button>
+              <button onClick={handleCancel} style={{ backgroundColor: "#f44336", color: "white" }}>Hủy</button>
+            </div>
+          </div>
+        </div>
+      )}
+
+      {/* Lịch sử nạp tiền */}
+      <div className="Hiss">
+      <div className="History">
+        <h3>Lịch sử nạp tiền</h3>
+        <div className="History-list">
+          {history.length > 0 ? (
+            history.map((item) => (
+              <div className="History-item" key={item.id}>
+                <div>
+                  <p>{item.description}</p>
+                  <span>{item.time}</span>
+                </div>
+                <div>
+                  <strong>{item.amount.toLocaleString()} 🌾</strong>
+                </div>
+              </div>
+            ))
+          ) : (
+            <p>Chưa có lịch sử nạp tiền.</p>
+          )}
+        </div>
+      </div>
+
+      <div className="PaymentHistory">
+          <h3>Lịch sử thanh toán</h3>
+          <div className="History-list">
+            {paymentHistory.length > 0 ? (
+              paymentHistory.map((item) => (
+                <div className="History-item" key={item.id}>
+                  <div>
+                    <p>{item.description}</p>
+                    <span>{item.time}</span>
+                  </div>
+                  <div>
+                    <strong>{item.amount.toLocaleString()} 🌾</strong>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <p>Chưa có lịch sử thanh toán.</p>
+            )}
+          </div>
+        </div>
+        </div>
+    </div>
+  );
+}
+
+export default Pay;
