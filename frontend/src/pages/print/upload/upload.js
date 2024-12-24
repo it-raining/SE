@@ -1,33 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../../../App.css";
 import "../Print.css";
 import "./upload.css";
-import { useState } from "react";
 
 function Upload() {
     const [fileList, setFileList] = useState([]); // Danh sách file tải lên
+    const [errorMessage, setErrorMessage] = useState(""); // Lưu trữ thông báo lỗi
 
-    const [fileUrl, setFileUrl] = useState("");
-
-    const fileBrowseHandler = (event) => {
-        let value = URL.createObjectURL(event.target.files[0]);
-        setFileUrl(value);
-    };
+    // Định dạng hợp lệ
+    const validFormats = [".doc", ".docx", ".pdf", ".png"];
 
     // Thêm tệp mới
     const handleAddFile = (event) => {
         const file = event.target.files[0]; // Lấy file từ input
-        fileBrowseHandler(event);
         if (file) {
-            setFileList([...fileList, { fid: Date.now(), name: file.name, path: fileUrl, pageNumber: 16, thumb: fileUrl }]);
+            const fileExtension = file.name.split('.').pop().toLowerCase(); // Lấy phần đuôi file
+            if (validFormats.includes(`.${fileExtension}`)) {
+                setFileList([...fileList, { name: file.name, id: Date.now() }]);
+                setErrorMessage(""); // Xóa lỗi nếu tệp hợp lệ
+            } else {
+                setErrorMessage("Định dạng tệp không hợp lệ. Vui lòng chọn tệp .doc, .docx, .pdf, hoặc .png.");
+            }
         }
     };
-
-    const nextAction = (event) => {
-        
-        sessionStorage.setItem('file', JSON.stringify(fileList));    
-    }
 
     // Xóa tệp
     const handleRemoveFile = (id) => {
@@ -40,7 +36,10 @@ function Upload() {
         window.location.href = "/print";
     };
 
-    // Tiếp theo
+    const nextAction = () => {
+        sessionStorage.setItem('file', JSON.stringify(fileList));
+    };
+
     return (
         <div className="Upload">
             {/* Header */}
@@ -71,12 +70,20 @@ function Upload() {
                             </div>
                         </label>
                     </div>
+                    {/* Thông báo lỗi */}
+                    {errorMessage && (
+                        <p style={{ color: "red", marginTop: "10px" }}>{errorMessage}</p>
+                    )}
                     <div className="navigation-buttons">
                         <button className="cancel-button" onClick={handleCancel}>
                             Hủy
                         </button>
                         <Link to="/print/configure">
-                            <button className="next-button" disabled={fileList.length === 0} onClick={() => nextAction()}>
+                            <button
+                                className="next-button"
+                                disabled={fileList.length === 0}
+                                onClick={nextAction}
+                            >
                                 Tiếp Theo
                             </button>
                         </Link>
