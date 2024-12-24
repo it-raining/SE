@@ -1,0 +1,73 @@
+.Confirm {
+    height: calc(100vh - 121px);
+    width: calc(100vh - 169px);
+    overflow: hidden;
+}
+
+.Confirm .thoc {
+    display: flex;
+    height: 24px;
+}
+
+.Confirm .panel {
+    width: 240px;
+    position: absolute;
+    bottom: 80px;
+    right: 120px;
+}
+
+.Confirm .panel .current {
+    margin-left: 10px;
+    display: flex;
+    text-indent: 10px;
+    font-size: 18px;
+    font-weight: 300;
+    margin-bottom: 10px;
+}
+
+.Confirm .panel .current#pay {
+    display: flex;
+    text-indent: 13px;
+    font-size: 18px;
+    font-weight: 300;
+}
+.Confirm .panel .current#after {
+    display: flex;
+    text-indent: 118px;
+    font-size: 18px;
+    font-weight: 300;
+    color: #d32f2f;
+}
+
+
+.Confirm .panel .current .money {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+.Confirm .panel button {
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    width: 240px;
+    color: white;
+    font-size: 18px;
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.Confirm .panel button#confirm {
+    background-color: #5cb85c;
+}
+
+.Confirm .panel button#back {
+    background-color: #d32f2f;
+}
+
+.Confirm .panel button#confirm:hover {
+    background-color: #318759;
+}
+
+.Confirm .panel button#back:hover {
+    filter: saturate(0.7);
+}

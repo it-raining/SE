@@ -1,0 +1,146 @@
+.History {
+    overflow: hidden;
+    height: calc(100vh - 121px);
+    width: calc(100vw - 169px);
+    background-color: #eef0fc;
+}
+
+.History .tab-list {
+    height: 50px;
+    width: calc(100% - 20px);
+    margin: auto;
+}
+
+.History .tab-list button {
+    background-color: white;
+    border: 2px solid #032b91;
+    border-radius: 12px;
+    margin: 5px;
+    height: calc(100% - 10px);
+    width: calc(50% - 10px);
+    font-size: 20px;
+    text-align: center;
+}
+
+.History .tab-list button p {
+    color: #032b91;
+    font-weight: 500;
+    position: relative;
+    top: 5px;
+}
+
+.History .tab-list button .notif {
+    height: 24px;
+    width: 24px;
+    border-radius: 12px;
+    display: inline-block;
+    font-size: 18px;
+    color: white;
+    text-align: center;
+    position: relative;
+    bottom: 23px;
+    left: calc(50% - 32px);
+}
+
+.History .tab-list button .notif#active {
+    background-color: red;
+}
+
+.History .tab-list button .notif#inactive {
+    background-color: #aeaeae;
+}
+
+.History .filter {
+    background-color: white;
+    margin: 15px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 2px solid #aeaeae;
+    border-radius: 12px;
+    display: flex;
+    height: 40px;
+}
+
+.History .filter .search-bar {
+    border-radius: 5px;
+    height: 40px;
+    width: calc(100% - 105px);
+    align-items: center;
+}
+
+.History .filter .search-bar img.search-icon {
+    padding-left: 12px;
+    height: 16px;
+}
+
+.History .filter .search-bar #search {
+    border: none;
+    outline: none;
+    margin-top: 5px;
+    height: 30px;
+    width: calc(100% - 42px);
+    padding-left: 8px;
+    font-size: 15px;
+    text-align: left;
+}
+
+.History .filter .field {
+    float: left;
+}
+
+.History .filter .field select {
+    height: 100%;
+    width: 100px;
+    text-align: center;
+    font-size: 15px;
+    border: hidden;
+    outline: none;
+}
+
+.History .list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: auto;
+    height: 100%;
+    width: calc(100% - 10px);
+}
+
+.History .list .row {
+    margin: 15px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    border: 2px solid #aeaeae;
+    border-radius: 12px;
+    background-color: white;
+    height: 120px;
+    width: 100%;
+    padding-left: 32px;
+    font-weight: 350;
+    font-size: 20px;
+    color: black;
+}
+
+
+.History img#picture {
+    object-fit: contain;
+    height: 100px;
+    width: 100px;
+    position: relative;
+    top: 10px;
+}
+
+.History .info {
+    height: 120px;
+    width: calc(100% - 140px);
+    display: inline-block;
+}
+
+.History .info .title {
+    position: relative;
+    bottom: 30px;
+}
+
+.History .row#printing .info progress{
+    width: calc(100% - 140px);
+    margin-left: 32px;
+}

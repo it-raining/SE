@@ -1,0 +1,80 @@
+.Print {
+    background-color: #eef0fc;
+    height: calc(100vh - 121px);
+    width: calc(100vw - 169px);
+}
+
+.Print .icon {
+    height: 24px;
+}
+
+.Print .file { 
+  background-color: white;
+  border-bottom: 1px solid #aeaeae;
+  height: 60px;
+  text-indent: 0;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  color: black;
+}
+
+.Print .file label{ 
+    padding-top: 16px;
+    padding-left: 32px;
+    font-weight: 500;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    color: black;
+}
+
+.Print .file #plus {
+    position: absolute;
+    right: 30px;
+    font-weight: 500;
+    font-size: 50px;
+    color: black;
+    text-align: right;
+}
+
+.Print .list {
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: auto;
+    height: calc(100vh - 182px);
+    width: 100%;
+}
+
+.Print .list .row {
+    border-bottom: 1px solid #aeaeae;
+    background-color: white;
+    height: 60px;
+    text-indent: 32px;
+    font-weight: 350;
+    font-size: 20px;
+    display: flex;
+    flex-direction: row;
+    color: black;
+    align-items: center;
+}
+  
+.Print .list .row div {
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+.Print .list img {
+    position: relative;
+    top: 1px;
+}
+
+.Print .list .row .tick {
+    right: 53px;
+}
+
+.Print .list .row .cross {
+    right: 32px;
+}
+
