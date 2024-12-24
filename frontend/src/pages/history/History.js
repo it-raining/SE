@@ -97,11 +97,7 @@ function History() {
         setKey(value);
         setIndex(0);
     }
-
-    const selectTab = (value) => {
-
-    }
-
+    
     return(
         <div className="History">
             
