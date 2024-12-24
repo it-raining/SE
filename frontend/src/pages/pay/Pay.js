@@ -54,7 +54,7 @@ function Pay() {
             {
                 pid: Date.now(),
                 uid: userID,
-                title: "Thanh toan 2",
+                title: "Thanh toan " + pidCount,
                 time: (((date.getHours() - 1) % 12 + 1) % 24) + ":" + date.getMinutes() + (date.getHours() < 12 ? " AM" : " PM"),
                 date: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
                 amount: pendingNapLua,
@@ -63,7 +63,7 @@ function Pay() {
             ...PaymentList
         ]
 
-        sessionStorage.setItem('paymentCount', pidCount + 1)
+        sessionStorage.setItem('paymentCount', Number(pidCount) + 1)
         sessionStorage.setItem('current', soDu + pendingNapLua);
         sessionStorage.setItem('paymentList', JSON.stringify(newPaymentList));
     
@@ -118,14 +118,6 @@ function Pay() {
                     <button 
                         type='submit'
                         onClick={handleNapLua}
-                        style={{
-                            padding: "10px 20px",
-                            backgroundColor: "#4CAF50",
-                            color: "white",
-                            border: "none",
-                            borderRadius: "4px",
-                            cursor: "pointer",
-                        }}
                     >
                         Nạp</button>
                     </div>
@@ -133,7 +125,17 @@ function Pay() {
 
             {/* Confirmation Dialog */}
             {showConfirmDialog && (
-                <div className="ConfirmDialog">
+                <div className="ConfirmDialog" style={{
+                    position: 'fixed',
+                    top: '121px',
+                    left: '169px',
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                    height: 'calc(100vh - 121px)',
+                    width: 'calc(100vw - 169px)',
+                    backgroundColor: 'rgba(0,0,0,0.7)',
+                }}>
                     <div className="ConfirmDialog-content">
                         <h4>Xác nhận nạp lúa</h4>
                         <div style={{

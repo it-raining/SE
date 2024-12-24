@@ -16,7 +16,7 @@ function Confirm () {
           alignItems: 'center',
           height: 'calc(100vh - 121px)',
           width: 'calc(100vw - 169px)',
-          backgroundColor: '#333',
+          backgroundColor: 'rgba(0,0,0,0.7)',
         },
         card: {
           backgroundColor: '#fff',
@@ -61,62 +61,87 @@ function Confirm () {
           margin: '0 5px',
         },
       };
+      
+    const confID = Number(sessionStorage.getItem('config'));
 
-    const file = JSON.parse(sessionStorage.getItem('file'));
-    const detail = [JSON.parse(sessionStorage.getItem('detail'))];
+    const configure = JSON.parse(sessionStorage.getItem('configureList')).find((conf) => {
+        return conf.cid === confID;
+    });
+
+    const printList = JSON.parse(sessionStorage.getItem('printList')).find((print) => {
+      return print.cid === confID;
+    })
+
+    const newPrint = [
+      {
+        ...printList,
+        ...configure,
+      }
+    ];
+
+    const printerList = JSON.parse(sessionStorage.getItem('printerList'))
+  
+    const getPrinterName = (ptid) => {
+      const printer = printerList.find((printer) => printer.ptid === ptid);
+      return printer ? printer.name : "Printer not found";
+    };
+
+    const file = () => {
+      const fid = newPrint[0].fid;
+      const fileList = JSON.parse(sessionStorage.getItem('fileList'));
+      return fileList.filter((file) => fid.includes(file.fid));
+    }
+
     const [index, setIndex] = useState(0);
     const fileHandleUp = () => {
-        const length = file.length;
+        const length = file().length;
         setIndex((length + index - 1) % length);
     }
 
     const fileHandleDown = () => {
-        const length = file.length;
+        const length = file().length;
         setIndex((index + 1) % length);
     }
 
-    const cost = 500 * ((detail[0].pagesToPrint === "default") ? (file.reduce((sum, file) => sum + file.pageNumber, 0)) : (Number(detail[0].pagesToPrint)));
+    const cost = 500 * ((newPrint[0].pagesToPrint === "default") ? (file().reduce((sum, file) => sum + file.pageNumber, 0)) : (Number(newPrint[0].pagesToPrint)));
 
-    const curr = sessionStorage.getItem('current')
+    const curr = sessionStorage.getItem('current');
 
     const handlePay = (value) => {
+        if (value < 0) {alert("Số dư không đủ!"); return;} 
         sessionStorage.setItem('current', value);
         handleConfirm();
     }
 
+    const handleInsert = () => {
+      const newList = [
+        {
+          uid: newPrint[0].uid,
+          cid: newPrint[0].cid,
+          ptid: newPrint[0].ptid,
+          progress: null,
+        },
+        ...JSON.parse(sessionStorage.getItem('printingList'))
+      ];
+      sessionStorage.setItem('printingList', JSON.stringify(newList));
+    };
+
+    const handleDelete = () => {
+      const newList = JSON.parse(sessionStorage.getItem('printList')).filter((print) => {
+          return (print.uid !== newPrint[0].uid) || (print.cid !==  newPrint[0].cid) || (print.ptid !== newPrint[0].ptid);
+      });
+      sessionStorage.setItem('printList', JSON.stringify(newList));
+    };
+
     const handleConfirm = () => {
-        const fileList = JSON.parse(sessionStorage.getItem('fileList'));
-        const configureList = JSON.parse(sessionStorage.getItem('configureList'));
-        const printList = JSON.parse(sessionStorage.getItem('printList'));
         const paymentList = JSON.parse(sessionStorage.getItem('paymentList'));
-
         const date = new Date();
-
-        const newFileList = [
-            ...file,
-            ...fileList
-        ];
-
-        const newConfigureList = [
-            {cid: Date.now(),
-                fid: file.map((file) => file.fid),
-                ...detail},
-            ...configureList
-        ];
-
-        const newPrintList = [
-            {
-                uid: Number(sessionStorage.getItem('uid')),
-                cid: Date.now()
-            },
-            ...printList
-        ];
-
+        const paymentID = Date.now();
         const payCount = sessionStorage.getItem('payCount');
 
         const newPaymentList = [
             {
-                pid: Date.now(),
+                pid: paymentID,
                 uid: Number(sessionStorage.getItem('uid')),
                 title: "Thanh toan " + payCount,
                 time: (((date.getHours() - 1) % 12 + 1) % 24) + ":" + date.getMinutes() + (date.getHours() < 12 ? " AM" : " PM"),
@@ -127,11 +152,10 @@ function Confirm () {
             ...paymentList
         ];
 
-        sessionStorage.setItem('payCount', payCount + 1);
-        sessionStorage.setItem('fileList', JSON.stringify(newFileList));
-        sessionStorage.setItem('configureList', JSON.stringify(newConfigureList));
-        sessionStorage.setItem('printList', JSON.stringify(newPrintList));
+        sessionStorage.setItem('payCount', Number(payCount) + 1);
         sessionStorage.setItem('paymentList', JSON.stringify(newPaymentList));
+
+        handleInsert(); handleDelete();
 
         setConfirmPanel(true);
     };
@@ -153,13 +177,13 @@ function Confirm () {
             <DocumentDetail
                 fileType="img"
                 filePath={JSON.parse(sessionStorage.getItem('preview'))}
-                fileName={file[index].name}
-                fileCount={file.length}
-                printer={sessionStorage.getItem('printer')}
+                fileName={file()[index].name}
+                fileCount={file().length}
+                printer={getPrinterName(newPrint[0].ptid)}
                 actionUp={() => fileHandleUp()}
                 actionDown={() => fileHandleDown()}
                 pageNumber={1}
-                documentDetail={detail}
+                documentDetail={newPrint[0]}
                 toggle={true}
             />
             <div>
@@ -168,8 +192,8 @@ function Confirm () {
                     <div id="curr" className="current"> <p>Số lúa hiện tại: <t className="money">{curr}</t> &nbsp;</p> <img src={Thoc} className="thoc" alt=""/> </div>
                     <div id="after" className="current"> <p>= <t className="money">{curr - cost}</t>&nbsp; </p> <img src={Thoc} className="thoc" alt=""/> </div>
                     <button id="confirm" onClick={() => handlePay(curr - cost)}>Thanh toán</button>
-                    <Link to="/print/select">
-                        <button id="back">Quay lại</button>
+                    <Link to="/print">
+                        <button id="back">Quay về hàng chờ</button>
                     </Link>
                 </div>
             </div>
@@ -191,7 +215,6 @@ function Confirm () {
                 </div>
               </div>
             )}
-            {JSON.stringify(detail)}
         </div>
     )
 }

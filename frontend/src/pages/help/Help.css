@@ -8,7 +8,8 @@
     background-color: white;
     border: hidden;
     border-radius: 12px;
-    height: 240px;
+    height: 36vh;
+    min-height:  200px;
     width: calc(88vw - 169px);
     margin-top: 30px;
     margin-left: auto;
@@ -47,14 +48,24 @@
 }
 
 .Help .help-section .help-request button {
+    height: calc(100% / 4 - 10px);
+    min-height: 44px;
     background-color: white;
-    border: 3px solid #032b91;
+    border: 2px solid #032b91;
+    border-bottom: 4px solid #032b91;
+    border-right: 3px solid #032b91;
     border-radius: 100px;
-    height: 50px;
     width: 80%;
     font-size: 16px;
-    margin-top: 20px;
+    margin-top: 2vh;
     color: #032b91;
+}
+
+.Help .help-section .help-request button:active {
+    background-color: #dfdfdf;
+    border: 2px solid #032b91;
+    border-top: 4px solid #032b91;
+    border-left: 3px solid #032b91;
 }
 
 .Help .help-section .help-list {
@@ -67,15 +78,25 @@
     display: flex;
     background-color: #032b91;
     border: 3px solid white;
+    border-bottom: 3px solid #aeaeae;
+    border-right: 3px solid #aeaeae;
     text-align: left;
     text-indent: 40px;
     margin-bottom: 10px;
     border-radius: 100px;
     height: calc(100% / 4 - 10px);
+    min-height: 44px;
     width: 100%;
     font-size: 16px;
     align-content: center;
     color: white;
+}
+
+.Help .help-section .help-list button:active {
+    background-color: #093266;
+    border: 0px solid white;
+    border-top: 3.2px solid #aeaeae;
+    border-left: 3.2px solid #aeaeae;
 }
 
 .Help .help-section .help-list button p {

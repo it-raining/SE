@@ -9,8 +9,11 @@
 }
 
 .Print .file { 
+    margin: 16px;
   background-color: white;
-  border-bottom: 1px solid #aeaeae;
+  border-bottom: 2px solid #aeaeae;
+border-right: 1px solid #aeaeae;
+  border-radius: 12px;
   height: 60px;
   text-indent: 0;
   font-weight: 500;
@@ -21,35 +24,39 @@
 }
 
 .Print .file label{ 
-    padding-top: 16px;
+    width: calc(100% - 98px);
     padding-left: 32px;
     font-weight: 500;
     font-size: 20px;
     display: flex;
     flex-direction: row;
     color: black;
+    align-items: center;
 }
 
 .Print .file #plus {
-    position: absolute;
-    right: 30px;
     font-weight: 500;
-    font-size: 50px;
+    font-size: 44px;
     color: black;
     text-align: right;
+    align-items: center;
 }
 
 .Print .list {
+    background-color: white;
+    border-bottom: 2px solid #aeaeae;
+    border-right: 1px solid #aeaeae;
+    margin: 16px;
+    border-radius: 12px;
     overflow-x: hidden;
     overflow-y: auto;
     scroll-behavior: auto;
-    height: calc(100vh - 182px);
-    width: 100%;
+    height: auto;
+    width: auto;
 }
 
 .Print .list .row {
     border-bottom: 1px solid #aeaeae;
-    background-color: white;
     height: 60px;
     text-indent: 32px;
     font-weight: 350;
@@ -58,6 +65,8 @@
     flex-direction: row;
     color: black;
     align-items: center;
+    width: auto;
+    padding-right: 42px;
 }
   
 .Print .list .row div {
@@ -65,16 +74,7 @@
     margin-left: auto;
 }
 
-.Print .list img {
-    position: relative;
-    top: 1px;
-}
-
-.Print .list .row .tick {
-    right: 53px;
-}
-
 .Print .list .row .cross {
-    right: 32px;
+    margin-left: 24px;
 }
 

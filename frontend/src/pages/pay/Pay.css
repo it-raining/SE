@@ -83,14 +83,18 @@
 }
 
 .Pay .panel .deposit button {
-    background-color: rgb(255, 123, 0);
-    border-radius: 5px;
+    background-color: #4CAF50;
+    border-radius: 12px;
     border: none;
     margin-top: 12px;
-    height: 34px;
+    height: 40px;
     width: 80px;
     font-size: 2vh;
     color: white;
+}
+
+.Pay .panel .deposit button:active {
+    background-color: #329025;
 }
 
 .ConfirmDialog {
@@ -192,10 +196,13 @@
 .Pay .history .head {
     margin: 10px;
     background-color: white;
-    border: 2px solid #032b91;
+    border: 1px solid #032b91;
+    border-bottom: 2px solid #032b91;
+    border-right: 1px solid #032b91;
     border-radius: 12px;
     padding-top: 3px;
-    height: 29px;
+    height: 30px;
+    color: #032b91;
 }
 .Pay .history .head table{
     width: 100%;
@@ -204,7 +211,9 @@
 .Pay .history .list {
     margin: 10px;
     border-radius: 12px;
-    border: 2px solid #aeaeae;
+    border: 1px solid #aeaeae;
+    border-bottom: 1px solid #aeaeae;
+    border-right: 1px solid #aeaeae;
     overflow-x: hidden;
     overflow-y: auto;
     scroll-behavior: auto;
@@ -213,8 +222,8 @@
 
 .Pay .history .list .row {
     background-color: white;
-    border-bottom: 1px solid #032b91;
-    height: 44px;
+    border-bottom: 1px solid #aeaeae;
+    height: 50px;
 }
 
 .Pay .history .list .row table {
@@ -222,7 +231,7 @@
 }
 
 .Pay .history .list .row table th{
-    padding-top: 10px;
+    padding-top: 12px;
     font-weight: 300;
 }
 

@@ -1,6 +1,5 @@
 .Confirm {
     height: calc(100vh - 121px);
-    width: calc(100vh - 169px);
     overflow: hidden;
 }
 

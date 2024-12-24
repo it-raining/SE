@@ -13,20 +13,23 @@
 
 .History .tab-list button {
     background-color: white;
-    border: 2px solid #032b91;
+    border: 1px solid #032b91;
+    border-bottom: 3px solid #032b91;
+    border-right: 2px solid #032b91;
     border-radius: 12px;
-    margin: 5px;
-    height: calc(100% - 10px);
-    width: calc(50% - 10px);
+    margin: 15px;
+    height: calc(100% - 5px);
+    width: calc(50% - 30px);
     font-size: 20px;
     text-align: center;
+    align-content: center;
 }
 
 .History .tab-list button p {
     color: #032b91;
     font-weight: 500;
     position: relative;
-    top: 5px;
+    top: 7px;
 }
 
 .History .tab-list button .notif {
@@ -38,8 +41,15 @@
     color: white;
     text-align: center;
     position: relative;
-    bottom: 23px;
+    bottom: 21px;
     left: calc(50% - 32px);
+}
+
+.History .tab-list button#active {
+    background-color: #dfdfdf;
+    border: 1px solid #032b91;
+    border-top: 3px solid #032b91;
+    border-left: 2px solid #032b91;
 }
 
 .History .tab-list button .notif#active {
@@ -52,10 +62,11 @@
 
 .History .filter {
     background-color: white;
-    margin: 15px;
-    margin-top: 5px;
+    margin: 25px;
+    margin-top: 20px;
     margin-bottom: 5px;
-    border: 2px solid #aeaeae;
+    border-bottom: 2px solid #aeaeae;
+    border-right: 1px solid #aeaeae;
     border-radius: 12px;
     display: flex;
     height: 40px;
@@ -98,22 +109,23 @@
 }
 
 .History .list {
+    margin-left: 25px;
+    margin-right: 25px;
     overflow-x: hidden;
     overflow-y: auto;
     scroll-behavior: auto;
     height: 100%;
-    width: calc(100% - 10px);
+    width: auto;
 }
 
 .History .list .row {
-    margin: 15px;
     margin-top: 5px;
     margin-bottom: 10px;
-    border: 2px solid #aeaeae;
+    border-bottom: 2px solid #aeaeae;
+    border-right: 1px solid #aeaeae;
     border-radius: 12px;
     background-color: white;
     height: 120px;
-    width: 100%;
     padding-left: 32px;
     font-weight: 350;
     font-size: 20px;
@@ -143,4 +155,28 @@
 .History .row#printing .info progress{
     width: calc(100% - 140px);
     margin-left: 32px;
+}
+
+.History .back {
+    position: fixed;
+    width: 100px;
+    background-color: white;
+    border-radius: 999px;
+    border: 1px solid #032b91;
+    border-bottom: 2px solid #032b91;
+    border-right: 1px solid #032b91;
+    left: 190px;
+    top: 134px;
+    height: 32px;
+}
+
+.History .back:active {
+    background-color: #dfdfdf;
+    border-radius: 999px;
+    border: 1px solid #032b91;
+    border-top: 2px solid #032b91;
+    border-left: 1px solid #032b91;
+    left: 190px;
+    top: 134px;
+    height: 32px;
 }

@@ -1,11 +1,11 @@
-.printer-list {
+.Printer .printer-list {
     height: calc(100vh - 121px);
     width: calc(100vw - 169px);
     font-family: Arial, sans-serif;
     color: #333;
   }
   
-  .steps-header {
+  .Printer .steps-header {
     height: 40px;
     display: flex;
     justify-content: space-between;
@@ -14,21 +14,18 @@
     border-bottom: 1px solid #ddd;
   }
   
-  .step {
+  .Printer  .step {
     flex: 1;
     text-align: center;
     padding: 10px;
     font-weight: bold;
     color: #555;
   }
+
   
-  .step.active {
-    color: #007bff;
-  }
-  
-  .printer-container {
+  .Printer {
     background-color: #eef0fc;
-    height: auto;
+    height: calc(100vh - 161px);
     width: calc(100vw - 209px);
     overflow-x: hidden;
     overflow-y: auto;
@@ -39,7 +36,7 @@
     padding: 20px;
   }
   
-  .printer-item {
+  .Printer  .printer-item {
     display: flex;
     align-items: center;
     padding: 15px;
@@ -50,73 +47,68 @@
     transition: background-color 0.3s;
   }
   
-  .printer-item:hover {
+  .Printer  .printer-item:hover {
     background-color: #f9f9f9;
   }
   
-  .printer-item.selected {
+  .Printer  .printer-item.selected {
     border-color: #007bff;
     background-color: #eaf4ff;
   }
   
-  .printer-item.not-compatible {
-    opacity: 0.5;
-    pointer-events: none;
-  }
-  
-  .printer-image {
+  .Printer  .printer-image {
     width: 80px;
     height: 80px;
     margin-right: 15px;
     object-fit: contain;
   }
   
-  .printer-details {
+  .Printer   .printer-details {
     flex: 1;
   }
   
-  .printer-details h3 {
+  .Printer   .printer-details h3 {
     margin: 0 0 10px;
     font-size: 16px;
   }
   
-  .printer-details ul {
+  .Printer  .printer-details ul {
     list-style: none;
     padding: 0;
     margin: 0 0 10px;
   }
   
-  .printer-details ul li {
+  .Printer   .printer-details ul li {
     font-size: 14px;
   }
   
-  .printer-details ul li.check::before {
+  .Printer  .printer-details ul li.check::before {
     content: "\2714 ";
     color: green;
   }
   
-  .printer-details ul li.cross::before {
+  .Printer  .printer-details ul li.cross::before {
     content: "\2716 ";
     color: red;
   }
   
-  .status {
+  .Printer .status {
     font-weight: bold;
     color: #555;
   }
 
-  .status#busy {
+  .Printer  .status#busy {
     font-weight: bold;
     color: red;
   }
   
-  .status#free {
+  .Printer  .status#free {
     font-weight: bold;
     color: green;
   }
   
 
-  .printer-extra-details {
+  .Printer  .printer-extra-details {
     padding: 10px 15px;
     margin-top: -10px;
     border-bottom-left-radius: 5px;
@@ -128,7 +120,7 @@
     color: #555;
   }
   
-  .actions {
+  .Printer  .actions {
     height: 40px;
     display: flex;
     position: absolute;
@@ -136,7 +128,7 @@
     bottom: 10px;
   }
   
-  .back-button {
+  .Printer  .back-button {
     margin-left: 24px;
     margin-right: 24px;
     padding: 10px 20px;
@@ -147,7 +139,7 @@
     cursor: pointer;
   }
   
-  .confirm-button {
+  .Printer   .confirm-button {
     margin-right: 35px;
     padding: 10px 30px;
     background-color: #4caf50;
@@ -157,6 +149,6 @@
     cursor: pointer;
   }
   
-  .confirm-button:hover {
+  .Printer  .confirm-button:hover {
     background-color: #0056b3;
   }

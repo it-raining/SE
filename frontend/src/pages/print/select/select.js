@@ -1,12 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import "../../../App.css";
 import "../Print.css";
 import "./select.css";
+import { useSpring, animated } from '@react-spring/web';
 
 function PrinterSelect() {
     const printers = [
         {
+            ptid: 1,
             name: "Xerox C235 Colour Multifunction Printer",
             compatible: true,
             color: true,
@@ -21,6 +23,7 @@ function PrinterSelect() {
             },
         },
         {
+            ptid: 2,
             name: "Ricoh Aficio MP 3352 (2016)",
             compatible: true,
             color: false,
@@ -35,6 +38,7 @@ function PrinterSelect() {
             },
         },
         {
+            ptid: 3,
             name: "Toshiba e-STUDIO 3015AC",
             compatible: false,
             color: true,
@@ -49,23 +53,69 @@ function PrinterSelect() {
             },
         },
     ];
-
-    useEffect(() => {
-        const inputField = document.getElementById('new_myField');
-    },[])
     
     const [expandedPrinter, setExpandedPrinter] = useState(null);
 
-    const handlePrinterClick = (printerName) => {
-        setExpandedPrinter(expandedPrinter === printerName ? null : printerName);
-        setPrinterSelected(printerName);
+    const handlePrinterClick = (ptid) => {
+        setExpandedPrinter(expandedPrinter === ptid ? null : ptid);
+        setPrinterSelected(ptid);
     };
 
     const [printerSelected, setPrinterSelected] = useState(null);
 
+    const [confirmPopup, setConfirmPopup] = useState(false);
+
     const handleNext = () => {
-        sessionStorage.setItem('printer', printerSelected);
-    }
+
+        const file = JSON.parse(sessionStorage.getItem('file'));
+        const detail = JSON.parse(sessionStorage.getItem('detail'));
+
+        const fileList = JSON.parse(sessionStorage.getItem('fileList'));
+        const configureList = JSON.parse(sessionStorage.getItem('configureList'));
+        const printList = JSON.parse(sessionStorage.getItem('printList'));
+
+        const confID = Date.now();
+
+        const newFileList = [
+            ...file,
+            ...fileList
+        ];
+
+        const newConfigureList = [
+            {cid: confID,
+                fid: file.map((file) => file.fid),
+                ...detail},
+            ...configureList
+        ];
+
+        const newPrintList = [
+            {
+                uid: Number(sessionStorage.getItem('uid')),
+                cid: confID,
+                ptid: printerSelected,
+            },
+            ...printList
+        ];
+
+        sessionStorage.setItem('fileList', JSON.stringify(newFileList));
+        sessionStorage.setItem('configureList', JSON.stringify(newConfigureList));
+        sessionStorage.setItem('printList', JSON.stringify(newPrintList));
+        sessionStorage.setItem('config', confID);
+
+        setTimeout(() => {
+            window.location.href = "/print/confirm";
+        }, 2000);       
+    };
+
+    const [forward, setForward] = useState(true)
+
+    const springs = useSpring({
+        y: forward ? 60 : -60,
+    })
+
+    const handleClick = () => {
+        setForward(s => !s)
+    } 
 
     return (
         <div className="printer-list">
@@ -82,7 +132,7 @@ function PrinterSelect() {
                     <div key={index}>
                         <div
                             className={`printer-item ${!printer.compatible ? "not-compatible" : ""}`}
-                            onClick={() => printer.compatible && handlePrinterClick(printer.name)}
+                            onClick={() => printer.compatible && handlePrinterClick(printer.ptid)}
                         >
                             <img src={printer.image} alt={printer.name} className="printer-image" />
                             <div className="printer-details">
@@ -95,10 +145,10 @@ function PrinterSelect() {
                                         {printer.color ? "Có thể in màu" : "Không thể in màu"}
                                     </li>
                                 </ul>
-                                <p className="status">{(printer.status === "Rảnh" && printer.name === printerSelected) ? "Đã chọn" : printer.status}</p>
+                                <p className="status">{(printer.status === "Rảnh" && printer.ptid === printerSelected) ? "Đã chọn" : printer.status}</p>
                             </div>
                         </div>
-                        {expandedPrinter === printer.name && (
+                        {expandedPrinter === printer.ptid && (
                             <div className="printer-extra-details">
                                 {printer.details.paper && <p>{printer.details.paper}</p>}
                                 {printer.details.speed && <p>{printer.details.speed}</p>}
@@ -110,17 +160,31 @@ function PrinterSelect() {
                     </div>
                 ))}
             </div>
+            {confirmPopup && (<div className="flex-container">
+                <animated.div
+                    onClick={handleClick}
+                    style={{
+                        width: 500,
+                        height: 40,
+                        background: 'white',
+                        filter: 'drop-shadow(4px 4px 5px #ddd)',
+                        borderRadius: 24,
+                        alignContent: 'center',
+                        margin: 'auto',
+                        textAlign: 'center',
+                        ...springs,
+                    }}
+                >Tiến trình đã được lưu vào hàng chờ</animated.div>
+            </div>)}
             <div className="actions">
                 <Link to="/print/configure">
                     <button className="back-button">
                         Quay lại
                     </button>
                 </Link>
-                <Link to="/print/confirm">
-                    <button className="confirm-button" onClick={() => handleNext()}>
+                    <button className="confirm-button" onClick={() => {handleNext(); setConfirmPopup(true); handleClick()}}>
                         In
                     </button>
-                </Link>
             </div>
         </div>
     );
