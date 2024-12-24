@@ -182,7 +182,7 @@ function PrinterSelect() {
                         Quay lại
                     </button>
                 </Link>
-                    <button className="confirm-button" onClick={() => {handleNext(); setConfirmPopup(true); handleClick()}}>
+                    <button className="confirm-button" disabled={!printerSelected} onClick={() => {handleNext(); setConfirmPopup(true); handleClick()}}>
                         In
                     </button>
             </div>

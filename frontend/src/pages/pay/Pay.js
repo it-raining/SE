@@ -182,7 +182,7 @@ function Pay() {
                             <th id="status">Trạng thái</th>
                         </tr>
                     </table>
-                </div>                
+                </div>        
                 <div className="list">                        
                     {filteredStatusList.length > 0 ? (filteredStatusList.map((val) => {
                         return (                         

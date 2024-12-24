@@ -110,6 +110,36 @@ function History() {
         setIndex(0);
     }
 
+    const handleProcess = (key) => {
+        const newPrintingList = JSON.parse(sessionStorage.getItem('printingList')).filter((val) => {
+            return (val.uid !== printList('printingList')[key].uid) || (val.cid !== printList('printingList')[key].cid) || (val.ptid !== printList('printingList')[key].ptid); 
+        })
+        const newPrintedList = [
+            {
+                uid: printList('printingList')[key].uid,
+                cid: printList('printingList')[key].cid,
+                ptid: printList('printingList')[key].ptid,
+            },
+            ...JSON.parse(sessionStorage.getItem('printedList')),
+        ]
+
+        sessionStorage.setItem('printingList', JSON.stringify(newPrintingList));
+        sessionStorage.setItem('printedList', JSON.stringify(newPrintedList));
+    }
+
+    async function handleAmount(value) {
+        let amount = 0;
+        if (!value) return -1;
+        if (Date.now() > value[0]) 
+            amount = (Date.now() - value[0]) / (value[1] - value[0]);
+        return (amount < 1) ? amount : 1 ;
+    }
+
+    const handleProgress = (value, key) => {
+        if (Date.now() > value[1])
+            handleProcess(key);
+    }
+
     return(
         <div className="History">
             
@@ -156,8 +186,8 @@ function History() {
                             <img src={val.thumb} id="picture" alt=""/>
                             <div className="info">
                                 <p className="title">{val.title}</p>
-                                <progress value={val.progress}/>
-                                <p style={{display: "inline", marginLeft:"50px"}}>{val.progress}%</p>
+                                <progress value={handleAmount(val.progress)} onChange={handleProgress(val.progress, key)}/>
+                                <p style={{display: "inline", marginLeft:"50px"}}>{handleAmount(val.progress) * 100}%</p>
                             </div>
                         </div>
                     );

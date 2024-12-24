@@ -218,6 +218,7 @@
     overflow-y: auto;
     scroll-behavior: auto;
     height: auto;
+    max-height: calc(100vh - 121px - 119px);
 }
 
 .Pay .history .list .row {

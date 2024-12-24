@@ -119,7 +119,7 @@ function Confirm () {
           uid: newPrint[0].uid,
           cid: newPrint[0].cid,
           ptid: newPrint[0].ptid,
-          progress: null,
+          progress: [(Date.now() + 10000), (Date.now() + 50 * 16 * 22)],
         },
         ...JSON.parse(sessionStorage.getItem('printingList'))
       ];

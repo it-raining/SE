@@ -86,11 +86,7 @@ function Print() {
             const configure = JSON.parse(sessionStorage.getItem('configureList')).find((conf) => {
                 return conf.cid === print.cid;
             });
-            const printer = JSON.parse(sessionStorage.getItem('printerList')).find((printer) => {
-                return printer.ptid === print.ptid;
-            });
-    ;
-            return configure ? { ...print, ...configure, printer : printer.name } : {};
+            return configure ? { ...print, ...configure } : {};
         });
 
         newPrintList.map((print) => {
