@@ -7,7 +7,6 @@ function DocumentDetail({fileType, filePath, fileName, fileCount, printer, docum
     return(
         <div className="DocumentDetail" style={(toggle) ? {} : { display: 'none' }}>
             <div className="base">
-                <img className="document" src={filePath} id={documentDetail[0].colorMode} alt=""/>
                 <div className="info">
                     <button className="action" id="up" onClick={actionUp}><img src={ActionUp} alt=""/></button>
                     <button className="action" id="down" onClick={actionDown}><img src={ActionDown} alt=""/></button>
