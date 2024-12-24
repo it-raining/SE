@@ -28,7 +28,7 @@ import SettingDarkBlue from "./assets/settingdarkblue.png";
 import SupportDarkBlue from "./assets/supportdarkblue.png";
 import ExitRed from "./assets/exitred.png";
 
-import { UserList, PaymentList, PrintList, PrintingList, PrintedList, ConfigureList, fileList } from './localData';
+import { UserList, PaymentList, PrintList, PrintingList, PrintedList, ConfigureList, fileList, PrinterList } from './localData';
 
 function Login() {
     const [password, setPassword] = useState('');
@@ -56,6 +56,7 @@ function Login() {
               sessionStorage.setItem('configureList', JSON.stringify(ConfigureList));
 
               sessionStorage.setItem('fileList', JSON.stringify(fileList));
+              sessionStorage.setItem('printerList', JSON.stringify(PrinterList));
 
               sessionStorage.setItem('paymentList', JSON.stringify(PaymentList));
 

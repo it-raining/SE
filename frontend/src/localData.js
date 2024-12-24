@@ -57,11 +57,13 @@ export const PaymentList = [
 export const PrintList = [
     {
         uid: 2210001,
-        cid: 1
+        cid: 1,
+        ptid: 2
     },
     {
         uid: 2210001,
-        cid: 2
+        cid: 2,
+        ptid: 2
     }
 ]
 
@@ -69,11 +71,13 @@ export const PrintingList = [
     {
         uid: 2210001,
         cid: 1,
+        ptid: 3,
         progress: -1
     },
     {
         uid: 2210001,
         cid: 2,
+        ptid: 3,
         progress: -1
     }
 ]
@@ -81,7 +85,8 @@ export const PrintingList = [
 export const PrintedList = [
     {
         uid: 2210001,
-        cid: 1
+        cid: 1,
+        ptid: 2,
     }
 ]
 
@@ -94,8 +99,8 @@ export const ConfigureList = [
         orientation: "portrait",
         pagesPerSheet: 1,
         collate: "yes",
-        colorMode: "colored",
-        paperSize: "a4",
+        color: "colored",
+        paperSize: "A4",
         resolution: 300,
         copies: 1
     },
@@ -107,8 +112,8 @@ export const ConfigureList = [
         orientation: "portrait",
         pagesPerSheet: 1,
         collate: "yes",
-        colorMode: "colored",
-        paperSize: "a4",
+        color: "monochrome",
+        paperSize: "A4",
         resolution: 300,
         copies: 1
     }
@@ -161,14 +166,8 @@ export const PrinterList = [
         speed: 22,
         resolution: [600, 600],
         location: "Tầng 2, Phòng 203",
-        status: "Rảnh",
+        status: "free",
         image: require("./assets/printer1.png"),
-        details: {
-            paper: "Khổ giấy: A4",
-            speed: "Tốc độ: 22ppm",
-            resolution: "Độ phân giải in: 600x600 dpi",
-            location: "Tầng 2, Phòng 203"
-        },
     },
     {   
         ptid: 2,
@@ -178,14 +177,8 @@ export const PrinterList = [
         speed: 22,
         resolution: [3000, 3000],
         location: "Tầng 3, Phòng 305",
-        status: "Rảnh",
+        status: "free",
         image: require("./assets/printer2.png"),
-        details: {
-            paper: "Khổ giấy: A4 A5",
-            speed: "Tốc độ: 22ppm",
-            resolution: "Độ phân giải in: 3000x3000 dpi",
-            location: "Tầng 3, Phòng 305"
-        },
     },
     {
         ptid: 3,
@@ -195,13 +188,7 @@ export const PrinterList = [
         speed: 22,
         resolution: [1200, 1200],
         location: "Tầng 2, Phòng 203",
-        status: "Bận",
+        status: "busy",
         image: require("./assets/printer1.png"),
-        details: {
-            paper: "Khổ giấy: A3 A4",
-            speed: "Tốc độ: 22ppm",
-            resolution: "Độ phân giải in: 1200x1200 dpi",
-            location: "Tầng 3, Phòng 305"
-        },
-    },
-];
+    }
+]
