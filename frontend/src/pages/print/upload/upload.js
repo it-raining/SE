@@ -1,33 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../../../App.css";
 import "../Print.css";
 import "./upload.css";
+import { useState } from "react";
 
 function Upload() {
-    const [fileList, setFileList] = useState([]); // Danh sách file tải lên
-    const [errorMessage, setErrorMessage] = useState(""); // Lưu trữ thông báo lỗi
 
-    // Định dạng hợp lệ
-    const validFormats = [".doc", ".docx", ".pdf", ".png"];
+    useEffect(() => {
+        document.title = 'Tải lên';
+    }, []);
+
+    const [fileList, setFileList] = useState([]); // Danh sách file tải lên
+
+    const [fileUrl, setFileUrl] = useState("");
+
+    const fileBrowseHandler = (event) => {
+        let value = URL.createObjectURL(event.target.files[0]);
+        setFileUrl(value);
+    };
 
     // Thêm tệp mới
     const handleAddFile = (event) => {
         const file = event.target.files[0]; // Lấy file từ input
+        fileBrowseHandler(event);
         if (file) {
-            const fileExtension = file.name.split('.').pop().toLowerCase(); // Lấy phần đuôi file
-            if (validFormats.includes(`.${fileExtension}`)) {
-                setFileList([...fileList, { name: file.name, id: Date.now() }]);
-                setErrorMessage(""); // Xóa lỗi nếu tệp hợp lệ
-            } else {
-                setErrorMessage("Định dạng tệp không hợp lệ. Vui lòng chọn tệp .doc, .docx, .pdf, hoặc .png.");
-            }
+            setFileList([{ fid: Date.now(), fileName: file.name, filePath: `./docs/${file.name}`, uri: fileUrl, pageNumber: 16, fileThumbnail: fileUrl, fileType: "pdf" }, ...fileList]);
         }
     };
 
+    const nextAction = (event) => {
+        sessionStorage.setItem('file', JSON.stringify(fileList));    
+    }
+
     // Xóa tệp
     const handleRemoveFile = (id) => {
-        setFileList(fileList.filter((file) => file.id !== id));
+        setFileList(fileList.filter((file) => file.fid !== id));
     };
 
     // Hủy (xóa toàn bộ danh sách file)
@@ -36,10 +44,7 @@ function Upload() {
         window.location.href = "/print";
     };
 
-    const nextAction = () => {
-        sessionStorage.setItem('file', JSON.stringify(fileList));
-    };
-
+    // Tiếp theo
     return (
         <div className="Upload">
             {/* Header */}
@@ -70,20 +75,12 @@ function Upload() {
                             </div>
                         </label>
                     </div>
-                    {/* Thông báo lỗi */}
-                    {errorMessage && (
-                        <p style={{ color: "red", marginTop: "10px" }}>{errorMessage}</p>
-                    )}
                     <div className="navigation-buttons">
                         <button className="cancel-button" onClick={handleCancel}>
                             Hủy
                         </button>
                         <Link to="/print/configure">
-                            <button
-                                className="next-button"
-                                disabled={fileList.length === 0}
-                                onClick={nextAction}
-                            >
+                            <button className="next-button" disabled={fileList.length === 0} onClick={() => nextAction()}>
                                 Tiếp Theo
                             </button>
                         </Link>
@@ -98,7 +95,7 @@ function Upload() {
                     <div className="file-list">
                         {fileList.map((file) => (
                             <div key={file.id} className="file-item">
-                                <span>{file.name}</span>
+                                <span>{file.fileName}</span>
                                 <span
                                     className="remove-btn"
                                     onClick={() => handleRemoveFile(file.id)}
@@ -107,9 +104,6 @@ function Upload() {
                                 </span>
                             </div>
                         ))}
-                        {fileList.length === 0 && (
-                            <p>Chưa có tệp nào được thêm.</p>
-                        )}
                     </div>
                 </div>
             </div>

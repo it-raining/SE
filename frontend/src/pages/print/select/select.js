@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../../../App.css";
 import "../Print.css";
@@ -6,13 +6,18 @@ import "./select.css";
 import { useSpring, animated } from '@react-spring/web';
 
 function PrinterSelect() {
+
+    useEffect(() => {
+        document.title = 'Chọn máy';
+    }, []);
+
     const printers = [
         {
             ptid: 1,
             name: "Xerox C235 Colour Multifunction Printer",
             compatible: true,
             color: true,
-            status: "Rảnh",
+            status: "free",
             image: require("../../../assets/printer1.png"),
             details: {
                 paper: "Khổ giấy: A4",
@@ -27,7 +32,7 @@ function PrinterSelect() {
             name: "Ricoh Aficio MP 3352 (2016)",
             compatible: true,
             color: false,
-            status: "Rảnh",
+            status: "free",
             image: require("../../../assets/printer2.png"),
             details: {
                 paper: "Khổ giấy: A4 A5",
@@ -42,7 +47,7 @@ function PrinterSelect() {
             name: "Toshiba e-STUDIO 3015AC",
             compatible: false,
             color: true,
-            status: "Bận",
+            status: "busy",
             image: require("../../../assets/printer1.png"),
             details: {
                 paper: "Khổ giấy: A3 A4",
@@ -117,6 +122,12 @@ function PrinterSelect() {
         setForward(s => !s)
     } 
 
+    const handleStatus = (value) => {
+        if (value === "free") return "Rảnh";
+        return "Bận";
+    }
+
+
     return (
         <div className="printer-list">
             {/* Header */}
@@ -145,7 +156,9 @@ function PrinterSelect() {
                                         {printer.color ? "Có thể in màu" : "Không thể in màu"}
                                     </li>
                                 </ul>
-                                <p className="status">{(printer.status === "Rảnh" && printer.ptid === printerSelected) ? "Đã chọn" : printer.status}</p>
+                                <p className="status" id={(printer.ptid === printerSelected) ? "selected" : printer.status}>
+                                    {(printer.ptid === printerSelected) ? "Đã chọn" : handleStatus(printer.status)}
+                                </p>
                             </div>
                         </div>
                         {expandedPrinter === printer.ptid && (

@@ -8,7 +8,7 @@
     background-color: white;
     border: hidden;
     border-radius: 12px;
-    height: 36vh;
+    height: 33vh;
     min-height:  200px;
     width: calc(88vw - 169px);
     margin-top: 30px;
@@ -29,6 +29,7 @@
 
 .Help .help-section {
     height: calc(100vh - 121px - 240px - 120px);
+    min-height: 160px;
     width: calc(88vw - 169px);
     display: flex;
     align-content: center;

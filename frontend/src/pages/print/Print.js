@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "../../App.css";
 import "./Print.css";
@@ -6,6 +6,10 @@ import RedCross from "../../assets/red_cross.png";
 import GreenTick from "../../assets/green_tick.png";
 
 function Print() {    
+
+  useEffect(() => {
+    document.title = 'Danh sách hàng chờ - SPSO';
+  }, []);
 
      const styles = {
             container: {
@@ -91,7 +95,7 @@ function Print() {
 
         newPrintList.map((print) => {
             for (let i = 0; i < print.fid.length; i++) {
-                print.fid[i] = fileList.find((file) => {return file.fid === print.fid[i]}).name + ", ";
+                print.fid[i] = fileList.find((file) => {return file.fid === print.fid[i]}).fileName + ", ";
             }
 
             return print;

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import "../../App.css";
 import "./Pay.css";
 import Avatar from "../../assets/avatar.png";
@@ -6,6 +6,11 @@ import Thoc from "../../assets/thoc.png";
 import Search from "../../assets/search.png";
 
 function Pay() {
+
+    useEffect(() => {
+        document.title = 'Thanh toán - SPSO';
+    }, []);
+    
     const PaymentList = JSON.parse(sessionStorage.getItem('paymentList')).filter((val) => {
         return val.uid === Number(sessionStorage.getItem('uid'));
     })
@@ -48,13 +53,13 @@ function Pay() {
     const handleConfirm = () => {
 
         const date = new Date();
-        const pidCount = Number(sessionStorage.getItem('paymentCount'));
+        const pidCount = Number(sessionStorage.getItem('payCount'));
 
         const newPaymentList = [
             {
                 pid: Date.now(),
                 uid: userID,
-                title: "Thanh toan " + pidCount,
+                title: "Nạp " + pidCount,
                 time: (((date.getHours() - 1) % 12 + 1) % 24) + ":" + date.getMinutes() + (date.getHours() < 12 ? " AM" : " PM"),
                 date: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
                 amount: pendingNapLua,
@@ -63,7 +68,7 @@ function Pay() {
             ...PaymentList
         ]
 
-        sessionStorage.setItem('paymentCount', Number(pidCount) + 1)
+        sessionStorage.setItem('payCount', Number(pidCount) + 1)
         sessionStorage.setItem('current', soDu + pendingNapLua);
         sessionStorage.setItem('paymentList', JSON.stringify(newPaymentList));
     

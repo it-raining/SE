@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import "../../App.css";
 import "./Help.css";
 import SearchBlue from "../../assets/searchblue.png";
@@ -6,6 +6,11 @@ import RightArrowBlue from "../../assets/rightarrowblue.png";
 import RightArrowWhite from "../../assets/rightarrowwhite.png";
 
 function Help() {
+
+    useEffect(() => {
+        document.title = 'Hướng dẫn - SPSO';
+    }, []);
+
     return(
         <div className="Help" style={{textAlign: "center",}}>
             <div className="help-panel" style={{alignContent: "center",}}>

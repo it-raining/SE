@@ -102,9 +102,18 @@
   
   .status {
     font-weight: bold;
-    color: #555;
+    color: blue;
   }
   
+  .status#free {
+    color: green;
+  }
+  
+  .status#busy {
+    color: red;
+  }
+  
+
   .printer-extra-details {
     padding: 10px 15px;
     margin-top: -10px;

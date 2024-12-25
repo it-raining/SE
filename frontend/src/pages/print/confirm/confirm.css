@@ -16,9 +16,7 @@
 }
 
 .Confirm .panel .current {
-    margin-left: 10px;
     display: flex;
-    text-indent: 10px;
     font-size: 18px;
     font-weight: 300;
     margin-bottom: 10px;
@@ -26,13 +24,13 @@
 
 .Confirm .panel .current#pay {
     display: flex;
-    text-indent: 13px;
+    text-indent: 3px;
     font-size: 18px;
     font-weight: 300;
 }
 .Confirm .panel .current#after {
     display: flex;
-    text-indent: 118px;
+    text-indent: 108px;
     font-size: 18px;
     font-weight: 300;
     color: #d32f2f;

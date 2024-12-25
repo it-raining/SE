@@ -1,10 +1,14 @@
-import React, {useState} from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "./confirm.css";
 import DocumentDetail from "../../../components/DocumentDetail";
 import Thoc from "../../../assets/thoc.png";
 
 function Confirm () {
+
+  useEffect(() => {
+    document.title = 'Xác nhận';
+  }, []);
 
     const styles = {
         container: {
@@ -119,7 +123,7 @@ function Confirm () {
           uid: newPrint[0].uid,
           cid: newPrint[0].cid,
           ptid: newPrint[0].ptid,
-          progress: [(Date.now() + 10000), (Date.now() + 50 * 16 * 22)],
+          progress: [Date.now() + 5000, Date.now() + 15000],
         },
         ...JSON.parse(sessionStorage.getItem('printingList'))
       ];
@@ -143,7 +147,7 @@ function Confirm () {
             {
                 pid: paymentID,
                 uid: Number(sessionStorage.getItem('uid')),
-                title: "Thanh toan " + payCount,
+                title: "Thanh toán " + payCount,
                 time: (((date.getHours() - 1) % 12 + 1) % 24) + ":" + date.getMinutes() + (date.getHours() < 12 ? " AM" : " PM"),
                 date: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
                 amount: cost,
@@ -161,7 +165,7 @@ function Confirm () {
     };
 
     const handleToCheckInList = () => {
-        window.location.href = "/pay"
+        window.location.href = "/history"
         console.log('Navigating to the check-in list...');
     };
     
@@ -176,8 +180,8 @@ function Confirm () {
         <div className="Confirm">
             <DocumentDetail
                 fileType="img"
-                filePath={JSON.parse(sessionStorage.getItem('preview'))}
-                fileName={file()[index].name}
+                filePath={require('../../../assets/wavio.png')}
+                fileName={file()[index].fileName}
                 fileCount={file().length}
                 printer={getPrinterName(newPrint[0].ptid)}
                 actionUp={() => fileHandleUp()}
@@ -188,9 +192,9 @@ function Confirm () {
             />
             <div>
                 <div className="panel">
-                    <div id="pay" className="current"> <p>Số lúa cần trả: <t className="money">{cost}</t> &nbsp;</p> <img src={Thoc} className="thoc" alt=""/> </div>
-                    <div id="curr" className="current"> <p>Số lúa hiện tại: <t className="money">{curr}</t> &nbsp;</p> <img src={Thoc} className="thoc" alt=""/> </div>
-                    <div id="after" className="current"> <p>= <t className="money">{curr - cost}</t>&nbsp; </p> <img src={Thoc} className="thoc" alt=""/> </div>
+                    <div id="pay" className="current"> <p>Số lúa cần trả: <t className="money">{cost}</t>&nbsp;</p> <img src={Thoc} className="thoc" alt=""/> </div>
+                    <div id="curr" className="current"> <p>Số lúa hiện tại: <t className="money">{curr}</t>&nbsp;</p> <img src={Thoc} className="thoc" alt=""/> </div>
+                    <div id="after" className="current"> <p>= <t className="money">{curr - cost}</t>&nbsp;</p> <img src={Thoc} className="thoc" alt=""/> </div>
                     <button id="confirm" onClick={() => handlePay(curr - cost)}>Thanh toán</button>
                     <Link to="/print">
                         <button id="back">Quay về hàng chờ</button>

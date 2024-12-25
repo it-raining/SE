@@ -1,13 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import "../../../App.css";
 import "../Print.css";
 import "./configure.css";
 
 function Configure() {
+
+    useEffect(() => {
+        document.title = 'Tùy chỉnh';
+    }, []);
+
     const fileList = JSON.parse(sessionStorage.getItem('file'));
     const file = fileList.reduce((acc, curr) => {
-        acc["name"] = acc["name"] ? [...acc["name"], curr.name + ", "] : [curr.name + ", "];
+        acc["fileName"] = acc["fileName"] ? [...acc["fileNamee"], curr.fileName + ", "] : [curr.fileName + ", "];
         return acc;
     }, {});
 
@@ -73,7 +78,7 @@ function Configure() {
                         {/* Tên tệp */}
                         <div className="attribute">
                             <label>Tên tệp:</label>
-                            {file.name}
+                            {file.fileName}
                         </div>
 
                         {/* Chọn trang in */}

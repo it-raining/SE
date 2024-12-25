@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../../App.css";
 import "./History.css";
 import DocumentDetail from "../../components/DocumentDetail";
@@ -6,6 +6,10 @@ import Search from "../../assets/search.png";
 
 function History() {
 
+    useEffect(() => {
+        document.title = 'Lịch sử - SPSO';
+    }, []);
+    
     const PrintingList = JSON.parse(sessionStorage.getItem('printingList'))
     .filter((print) => {
         return print.uid === Number(sessionStorage.getItem('uid'));
@@ -35,7 +39,7 @@ function History() {
 
         newList.map((print) => {
             for (let i = 0; i < print.fid.length; i++) {
-                print.title += fileList.find((file) => {return file.fid === print.fid[i]}).name + ", ";
+                print.title += fileList.find((file) => {return file.fid === print.fid[i]}).fileName + ", ";
             }
             return print;
         });
@@ -65,14 +69,14 @@ function History() {
 
         newList.map((print) => {
             for (let i = 0; i < print.fid.length; i++) {
-                print.title += fileList.find((file) => {return file.fid === print.fid[i]}).name + ", ";
+                print.title += fileList.find((file) => {return file.fid === print.fid[i]}).fileName + ", ";
             }
             return print;
         });
         
         return newList.filter((val) => {
             if (!searchVal) return val;
-            return val.fid.includes(searchVal) && val;
+            return val.title.includes(searchVal) && val;
         });
     }
 
@@ -110,35 +114,52 @@ function History() {
         setIndex(0);
     }
 
-    const handleProcess = (key) => {
-        const newPrintingList = JSON.parse(sessionStorage.getItem('printingList')).filter((val) => {
-            return (val.uid !== printList('printingList')[key].uid) || (val.cid !== printList('printingList')[key].cid) || (val.ptid !== printList('printingList')[key].ptid); 
+    const [renderTrigger, setRenderTrigger] = useState(0); // Used to force re-render
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            setRenderTrigger(renderTrigger);
+            setRenderTrigger((prev) => prev + 1);
+        }, 10);
+        
+        PrintedList.map((current) => {
+            const tempList = PrintedList.filter((val) => {
+                return val.cid === current.cid;
+            });
+            if (tempList.length > 1) {
+                let count = 0;
+                const newList = JSON.parse(sessionStorage.getItem('printedList')).filter((val) => {
+                    if (count < 1) { ++count; return val;}
+                    return val.cid !== current.cid; 
+                })
+                sessionStorage.setItem('printedList', JSON.stringify(newList));
+            }
+            return false;
         })
-        const newPrintedList = [
-            {
-                uid: printList('printingList')[key].uid,
-                cid: printList('printingList')[key].cid,
-                ptid: printList('printingList')[key].ptid,
-            },
-            ...JSON.parse(sessionStorage.getItem('printedList')),
-        ]
+        
+        PrintingList.map((current) => {
+            if (current.progress && current.progress[1] < Date.now()) {
+                const newPrintingList = JSON.parse(sessionStorage.getItem('printingList')).filter((val) => {
+                    return val.cid !== current.cid; 
+                })
 
-        sessionStorage.setItem('printingList', JSON.stringify(newPrintingList));
-        sessionStorage.setItem('printedList', JSON.stringify(newPrintedList));
-    }
+                const newPrintedList = [
+                    {
+                        uid: current.uid,
+                        cid: current.cid,
+                        ptid: current.ptid,
+                    },
+                    ...JSON.parse(sessionStorage.getItem('printedList')),
+                ]
+        
+                sessionStorage.setItem('printingList', JSON.stringify(newPrintingList));
+                sessionStorage.setItem('printedList', JSON.stringify(newPrintedList));
+            }
+            return false;
+        })
 
-    async function handleAmount(value) {
-        let amount = 0;
-        if (!value) return -1;
-        if (Date.now() > value[0]) 
-            amount = (Date.now() - value[0]) / (value[1] - value[0]);
-        return (amount < 1) ? amount : 1 ;
-    }
-
-    const handleProgress = (value, key) => {
-        if (Date.now() > value[1])
-            handleProcess(key);
-    }
+        return () => clearInterval(interval); // Cleanup
+    });
 
     return(
         <div className="History">
@@ -164,8 +185,8 @@ function History() {
             {detailOn && (
                 <DocumentDetail
                     fileType="img"
-                    filePath={JSON.parse(sessionStorage.getItem('preview'))}
-                    fileName={file()[index].name}
+                    filePath={require('../../assets/baocao.jpg')}
+                    fileName={file()[index].fileName}
                     fileCount={file().length}
                     printer={printList(status)[key].printer}
                     actionUp={() => fileHandleUp()}
@@ -186,8 +207,18 @@ function History() {
                             <img src={val.thumb} id="picture" alt=""/>
                             <div className="info">
                                 <p className="title">{val.title}</p>
-                                <progress value={handleAmount(val.progress)} onChange={handleProgress(val.progress, key)}/>
-                                <p style={{display: "inline", marginLeft:"50px"}}>{handleAmount(val.progress) * 100}%</p>
+                                <progress value={val.progress && val.progress[0]?
+                                    ((val.progress[0] > Date.now()) ? 0
+                                        : ((val.progress[1] >= Date.now()) ?
+                                        (Date.now() - val.progress[0]) / (val.progress[1] - val.progress[0])
+                                        : 1))  : null}/>
+                                <p style={{display: "inline", marginLeft:"50px"}}>
+                                    {val.progress  && val.progress[0]?
+                                        (parseFloat((val.progress[0] > Date.now()) ? 0
+                                        : ((val.progress[1] >= Date.now()) ?
+                                        100 * (Date.now() - val.progress[0]) / (val.progress[1] - val.progress[0])
+                                        : 100)).toFixed(0) + '%') : "Lỗi"}
+                                </p>
                             </div>
                         </div>
                     );

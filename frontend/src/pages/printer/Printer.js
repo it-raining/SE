@@ -1,10 +1,20 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import "../../App.css";
 import "./Printer.css";
 
 function Printer() {
-    const printers = JSON.parse(sessionStorage.getItem('printerList'))
-        
+
+    useEffect(() => {
+        document.title = 'Danh sách máy in - SPSO';
+    }, []);
+
+    const printers = JSON.parse(sessionStorage.getItem('printerList')).map((current) => {
+        const printingList = JSON.parse(sessionStorage.getItem('printerList')).filter((val) => {
+            return val.ptid === current.ptid;
+        })
+        current.status = (printingList && printingList[0] && printingList[0].cid && current.status !== "busy") ? "working" : current.status;
+        return current;
+    })
     const [expandedPrinter, setExpandedPrinter] = useState(null);
     
     const handlePrinterClick = (printerName) => {
@@ -27,7 +37,9 @@ function Printer() {
                                         {printer.color ? "Có thể in màu" : "Không thể in màu"}
                                     </li>
                                 </ul>
-                                <p className="status" id={(printer.status === "busy") ? "busy" : "free"}>{(printer.status === "busy") ? "Bận" : "Rảnh"}</p>
+                                <p className="status" id={(printer.status === "busy") ? "busy" : "free"}>
+                                    {printer.status === "free" ? "Rảnh" : (printer.status === "working" ? "Đang in" : "Bận")}
+                                </p>
                             </div>
                         </div>
                         {expandedPrinter === printer.name && (
