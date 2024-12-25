@@ -19,7 +19,7 @@ export const PaymentList = [
     {
         pid: 20190101003,
         uid: 2210001,
-        title: "Thanh toan 2",
+        title: "Thanh toán 2",
         time: "4:20 PM",
         date: "1/1/2019",
         amount: 4000,
@@ -28,7 +28,7 @@ export const PaymentList = [
     {
         pid: 20190101002,
         uid: 2210001,
-        title: "Thanh toan 1",
+        title: "Thanh toán 1",
         time: "4:00 PM",
         date: "1/1/2019",
         amount: 6000,
@@ -37,7 +37,7 @@ export const PaymentList = [
     {
         pid: 20190101001,
         uid: 2210001,
-        title: "Nap 1",
+        title: "Nạp 1",
         time: "3:00 PM",
         date: "1/1/2019",
         amount: 50000,
@@ -58,7 +58,7 @@ export const PrintList = [
     {
         uid: 2210001,
         cid: 1,
-        ptid: 2
+        ptid: 1
     },
     {
         uid: 2210001,
@@ -67,20 +67,7 @@ export const PrintList = [
     }
 ]
 
-export const PrintingList = [
-    {
-        uid: 2210001,
-        cid: 1,
-        ptid: 3,
-        progress: -1
-    },
-    {
-        uid: 2210001,
-        cid: 2,
-        ptid: 3,
-        progress: -1
-    }
-]
+export const PrintingList = []
 
 export const PrintedList = [
     {
@@ -122,38 +109,48 @@ export const ConfigureList = [
 export const fileList = [
     {
         fid: 5,
-        name: "Baocao.pdf",
-        path: require("./docs/Baocao.pdf"),
+        fileName: "Baocao.pdf",
+        filePath: "./docs/Baocao.pdf",
+        uri: require("./docs/Baocao.pdf"),
         pageNumber: 16,
-        thumb: require("./assets/thumb.png")
+        fileType: "pdf",
+        fileThumbnail: require("./assets/thumb.png")
     },
     {
         fid: 4,
-        name: "Slide1.pdf",
-        path: require("./docs/Slide1.pdf"),
+        fileName: "Slide1.pdf",
+        filePath: "./docs/Slide1.pdf",
+        uri: require("./docs/Slide1.pdf"),
         pageNumber: 16,
-        thumb: require("./assets/portrait.png")
+        fileType: "pdf",
+        fileThumbnail: require("./assets/portrait.png")
     },
     {
         fid: 3,
-        name: "giáo trình.pdf",
-        path: require("./docs/giáo trình.pdf"),
+        fileName: "giáo trình.pdf",
+        filePath: "./docs/giáo trình.pdf",
+        uri: require("./docs/giáo trình.pdf"),
         pageNumber: 16,
-        thumb: require("./assets/portrait.png")
+        fileType: "pdf",
+        fileThumbnail: require("./assets/portrait.png")
     },
     {
         fid: 2,
-        name: "Đồi gió hú.pdf",
-        path: require("./docs/Đồi gió hú.pdf"),
+        fileName: "Đồi gió hú.pdf",
+        filePath: "./docs/Đồi gió hú.pdf",
+        uri: require("./docs/Đồi gió hú.pdf"),
         pageNumber: 16,
-        thumb: require("./assets/portrait.png")
+        fileType: "pdf",
+        fileThumbnail: require("./assets/portrait.png")
     },
     {
         fid: 1,
-        name: "Tôi thấy hoa vàng trên cỏ xanh.docx",
-        path: require("./docs/Tôi thấy hoa vàng trên cỏ xanh.docx"),
+        fileName: "Tôi thấy hoa vàng trên cỏ xanh.docx",
+        filePath: "./docs/Tôi thấy hoa vàng trên cỏ xanh.docx",
+        uri: require("./docs/Tôi thấy hoa vàng trên cỏ xanh.docx"),
         pageNumber: 16,
-        thumb: require("./assets/portrait.png")
+        fileType: "docx",
+        fileThumbnail: require("./assets/portrait.png")
     }
 ]
 

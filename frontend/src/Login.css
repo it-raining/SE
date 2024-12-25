@@ -1,18 +1,23 @@
 .Login {
   align-content: center;
+  overflow: hidden;
+  height: calc(100vh - 121px);
+  width: 100vw; 
 }
 
 .Login .schoolbg {
-    filter: brightness(100%);
+    filter: brightness(0.7) blur(1px);
     object-fit: cover;
-    height: 81.3vh;
+    height: auto;
     width: 100vw; 
 }
 
 .Login h2#login {
     text-align: center;
-    font-variation-settings: "wdth" 90;
-    padding-bottom: 24px;
+    font-variation-settings: "wdth" 120;
+    font-size: 32px;
+    font-weight: 500;
+    padding-bottom: 2vh;
 }
 
 .Login .label {
@@ -22,7 +27,7 @@
 
 .Login .login-window {
     position: fixed;
-    top: calc((99vh - 369px) / 2);
+    top: calc((100vh - 480px) / 2 + 121px);
     left: calc((99vw - 420px) / 2);
     height: 369px;
     width: 420px;
@@ -30,7 +35,6 @@
     border-width: 10px;
     border-color: #032b91;
     background-color: white;
-    font-weight: 700;
   }
   
   .Login  .login-window .login-context {
@@ -38,7 +42,7 @@
     justify-content: center;
     align-items: center;
     top: 32px;
-    font-weight: 300;
+    font-weight: 350;
   }
   
   .Login  .login-window .login-context button{
@@ -56,10 +60,14 @@
     border-color: #aeaeae;
     border-style: normal;
     text-indent: 10px;
+    color: black;
+    top: 8px;
 }
 
 .Login .form-control#email {
   position: relative;
+  left:8px;
+  color: black;
 }
 
 .Login .email {
@@ -69,7 +77,7 @@
   }
   
   .Login   .password {
-    padding-top: 20px;
+    padding-top: 24px;
     height: 50px;
     text-align: center;
   }
@@ -86,9 +94,10 @@
 }
 
 .Login button#submit {
-    height: 33px;
-    width: 321px;
+    height: 36px;
+    width: 324px;
     border-radius: 5px;
-    background-color: #a4caea;
+    background-color: #032b91;
+    color: white;
     border: none;
 }

@@ -7,6 +7,7 @@ function DocumentDetail({fileType, filePath, fileName, fileCount, printer, docum
     return(
         <div className="DocumentDetail" style={(toggle) ? {} : { display: 'none' }}>
             <div className="base">
+                <img className="document" src={filePath} id={documentDetail.color} alt=""/>
                 <div className="info">
                     <button className="action" id="up" onClick={actionUp}><img src={ActionUp} alt=""/></button>
                     <button className="action" id="down" onClick={actionDown}><img src={ActionDown} alt=""/></button>
@@ -17,28 +18,28 @@ function DocumentDetail({fileType, filePath, fileName, fileCount, printer, docum
                     <div className="detailList">
                         <li className="row">
                             <div className="detail">
-                                Chọn trang in:&nbsp;{(documentDetail[0].pageRange === "all") ? "In tất cả" : "Tùy chọn"}
+                                Chọn trang in:&nbsp;{(documentDetail.pageRange === "all") ? "In tất cả" : "Tùy chọn"}
                             </div>
                             <div className="detail">
-                                Số trang in:&nbsp;{(documentDetail[0].pageRange === "all") ? "16" : documentDetail[0].pagesToPrint}
+                                Số trang in:&nbsp;{(documentDetail.pageRange === "all") ? "16" : documentDetail.pagesToPrint}
                             </div>
                             <div className="detail">
-                                Hướng in:&nbsp;{(documentDetail[0].orientation === "Landscape") ? "Ngang" : "Dọc"}
+                                Hướng in:&nbsp;{(documentDetail.orientation === "Landscape") ? "Ngang" : "Dọc"}
                             </div>
                             <div className="detail">
-                                Số trang mỗi tờ:&nbsp;{documentDetail[0].pagesPerSheet}
+                                Số trang mỗi tờ:&nbsp;{documentDetail.pagesPerSheet}
                             </div>
                             <div className="detail">
-                                Xếp bộ theo thứ tự:&nbsp;{(documentDetail[0].collate === "Yes") ? "1, 2, 3" : "3, 2, 1"}
+                                Xếp bộ theo thứ tự:&nbsp;{(documentDetail.collate === "Yes") ? "1, 2, 3" : "3, 2, 1"}
                             </div>
                             <div className="detail">
-                                Chế độ màu:&nbsp;{(documentDetail[0].colorMode === "colored") ? "Màu sắc" : "Đen trắng"}
+                                Chế độ màu:&nbsp;{(documentDetail.color === "colored") ? "Màu sắc" : "Đen trắng"}
                             </div>
                             <div className="detail">
-                                Kích thước giấy:&nbsp;{documentDetail[0].paperSize}
+                                Kích thước giấy:&nbsp;{documentDetail.paperSize}
                             </div>
                             <div className="detail">
-                                Số bản in:&nbsp;{documentDetail[0].copies}
+                                Số bản in:&nbsp;{documentDetail.copies}
                             </div> 
                         </li>
                     </div>

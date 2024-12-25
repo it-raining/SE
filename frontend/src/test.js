@@ -1,12 +1,8 @@
-import React, { useState } from "react";
-//import FileUploader from "./components/FileUploader";
+import React from 'react';
 
-function Test() {
- return (
-  <div className="Test">
-      {"<FileUploader/>"}
-  </div>
- );
-}
+const Test = () => {
+  return(<div></div>
+  )
+};
 
 export default Test;

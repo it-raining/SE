@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
 import './App.css';
-import Sidebar from './components/Sidebar';
+import Sidebar from './components/Sidebar';import "@cyntler/react-doc-viewer/dist/index.css";
 
 import Homepage from './pages/homepage/Homepage';
 import History from './pages/history/History';
@@ -31,6 +31,11 @@ import ExitRed from "./assets/exitred.png";
 import { UserList, PaymentList, PrintList, PrintingList, PrintedList, ConfigureList, fileList, PrinterList } from './localData';
 
 function Login() {
+
+    useEffect(() => {
+      document.title = 'Đăng nhập';
+    }, []);
+
     const [password, setPassword] = useState('');
     const [username, setUsername] = useState('');
     
@@ -61,12 +66,12 @@ function Login() {
               sessionStorage.setItem('paymentList', JSON.stringify(PaymentList));
 
               sessionStorage.setItem('login', true);
-              sessionStorage.setItem('payCount', 3);
+              sessionStorage.setItem('payCount', 2);
               sessionStorage.setItem('depositCount', 2);
 
             window.location.href = "/";
           } else {
-            alert("Sai mật khẩu.");
+            alert("Wrong password.");
           }
         }
     };
@@ -79,13 +84,13 @@ function Login() {
           <h2 id="login">Đăng nhập</h2>
           <div className="username">
             <div className="label">
-              <label>Tên đăng nhập (Email)</label>
+              <label>Tài khoản</label>
             </div>
             <input
               type="text" id="email"
               className="form-control"
               value={username}
-              placeholder="Nhập tên đăng nhập (Email)"
+              placeholder="Nhập tài khoản..."
               onChange={(e) => setUsername(e.target.value)}
               required
             />
@@ -98,13 +103,13 @@ function Login() {
               type="password" id="password"
               className="form-control"
               value={password}
-              placeholder="Nhập mật khẩu"
+              placeholder="Nhập mật khẩu..."
               onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
           <div className="form-submit">
-            <button type="submit" id="submit">Xác nhận</button>
+            <button type="submit" id="submit">Confirm</button>
           </div>
           <p className="forgot-password">
             <a href="#forgot">Quên mật khẩu</a>
