@@ -197,7 +197,7 @@ function Confirm () {
             <DocumentDetail
                 fileType="img"
                 filePath={require('../../../assets/portrait.png')}
-                fileName={JSON.stringify(configure)}
+                fileName={file()[index].fileName}
                 fileCount={file().length}
                 printer={getPrinterName(newPrint[0].ptid)}
                 actionUp={() => fileHandleUp()}
