@@ -7,7 +7,7 @@ import Search from "../../assets/search.png";
 function History() {
 
     useEffect(() => {
-        document.title = 'Lịch sử - SPSO';
+        document.title = 'Lịch sử';
     }, []);
     
     const PrintingList = JSON.parse(sessionStorage.getItem('printingList'))
