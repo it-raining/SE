@@ -12,7 +12,7 @@
     margin: 16px;
   background-color: white;
   border-bottom: 2px solid #aeaeae;
-border-right: 1px solid #aeaeae;
+  border-right: 1px solid #aeaeae;
   border-radius: 12px;
   height: 60px;
   text-indent: 0;
@@ -52,6 +52,7 @@ border-right: 1px solid #aeaeae;
     overflow-y: auto;
     scroll-behavior: auto;
     height: auto;
+    max-height: calc(100% - 95px);
     width: auto;
 }
 
