@@ -8,7 +8,7 @@ import GreenTick from "../../assets/green_tick.png";
 function Print() {    
 
   useEffect(() => {
-    document.title = 'Danh sách hàng chờ - SPSO';
+    document.title = 'Danh sách hàng chờ';
   }, []);
 
      const styles = {
