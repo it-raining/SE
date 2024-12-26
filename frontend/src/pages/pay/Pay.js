@@ -8,7 +8,7 @@ import Search from "../../assets/search.png";
 function Pay() {
 
     useEffect(() => {
-        document.title = 'Thanh toán - SPSO';
+        document.title = 'Thanh toán';
     }, []);
     
     const PaymentList = JSON.parse(sessionStorage.getItem('paymentList'))
