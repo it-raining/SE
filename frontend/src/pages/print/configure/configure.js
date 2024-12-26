@@ -12,7 +12,11 @@ function Configure() {
 
     const fileList = JSON.parse(sessionStorage.getItem('file'));
     const file = fileList.reduce((acc, curr) => {
-        acc["fileName"] = acc["fileName"] ? [...acc["fileNamee"], curr.fileName + ", "] : [curr.fileName + ", "];
+        acc["fileName"] = acc["fileName"] ? 
+            [...acc["fileName"], curr.fileName + ", "] 
+            : 
+            [curr.fileName + ", "]
+        ;
         return acc;
     }, {});
 
@@ -29,10 +33,10 @@ function Configure() {
         orientation: "Portrait",
         pagesPerSheet: "1",
         collate: "Yes",
-        colorMode: "colored",
+        color: "colored",
         paperSize: "A4",
-        resolution: "300dpi",
-        copies: "1",
+        resolution: 300,
+        copies: 1,
     });
 
     const pageValue = (value) => {
@@ -100,15 +104,25 @@ function Configure() {
                                 type="number"
                                 value={selectedAttributes.pagesToPrint}
                                 onChange={(e) => pageValue(e.target.value)}
-                                disabled={selectedAttributes.pageRange === "all"} // Vô hiệu hóa nếu chọn "In tất cả"
+                                disabled={selectedAttributes.pageRange === "all"}
                                 placeholder={
                                     selectedAttributes.pageRange === "all"
                                         ? "Không cần nhập khi in tất cả"
                                         : "Nhập số trang"
                                 }
                                 style={{
-                                    backgroundColor: selectedAttributes.pageRange === "all" ? "#f1f1f1" : "white",
-                                    cursor: selectedAttributes.pageRange === "all" ? "not-allowed" : "text",
+                                    backgroundColor: 
+                                        selectedAttributes.pageRange === "all" ? 
+                                            "#f1f1f1" 
+                                            : 
+                                            "white"
+                                        ,
+                                    cursor: 
+                                        selectedAttributes.pageRange === "all" ? 
+                                            "not-allowed" 
+                                            : 
+                                            "text"
+                                        ,
                                 }}
                             />
                         </div>
@@ -118,7 +132,10 @@ function Configure() {
                             <label>Hướng in:</label>
                             <select
                                 value={selectedAttributes.orientation}
-                                onChange={(e) => handleAttributeChange("orientation", e.target.value)}
+                                onChange={(e) => handleAttributeChange(
+                                    "orientation", 
+                                    e.target.value
+                                )}
                             >
                                 <option value="Portrait">Dọc</option>
                                 <option value="Landscape">Ngang</option>
@@ -128,7 +145,10 @@ function Configure() {
                             <label>Số trang mỗi tờ:</label>
                             <select
                                 value={selectedAttributes.pagesPerSheet}
-                                onChange={(e) => handleAttributeChange("pagesPerSheet", e.target.value)}
+                                onChange={(e) => handleAttributeChange(
+                                    "pagesPerSheet", 
+                                    e.target.value
+                                )}
                             >
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -140,7 +160,10 @@ function Configure() {
                             <label>Xếp bộ theo thứ tự:</label>
                             <select
                                 value={selectedAttributes.collate}
-                                onChange={(e) => handleAttributeChange("collate", e.target.value)}
+                                onChange={(e) => handleAttributeChange(
+                                    "collate",
+                                    e.target.value
+                                )}
                             >
                                 <option value="Yes">1, 2, 3</option>
                                 <option value="No">3, 2, 1</option>
@@ -150,7 +173,10 @@ function Configure() {
                             <label>Chế độ màu:</label>
                             <select
                                 value={selectedAttributes.colorMode}
-                                onChange={(e) => handleAttributeChange("colorMode", e.target.value)}
+                                onChange={(e) => handleAttributeChange(
+                                    "colorMode", 
+                                    e.target.value
+                                )}
                             >
                                 <option value="colored">Màu sắc</option>
                                 <option value="monochrome">Đen trắng</option>
@@ -161,7 +187,10 @@ function Configure() {
                             <label>Kích thước giấy:</label>
                             <select
                                 value={selectedAttributes.paperSize}
-                                onChange={(e) => handleAttributeChange("paperSize", e.target.value)}
+                                onChange={(e) => handleAttributeChange(
+                                    "paperSize", 
+                                    e.target.value
+                                )}
                             >
                                 <option value="A4">A4</option>
                                 <option value="A3">A3</option>
@@ -175,7 +204,10 @@ function Configure() {
                             <label>Số bản in:</label>
                             <select
                                 value={selectedAttributes.copies}
-                                onChange={(e) => handleAttributeChange("copies", e.target.value)}
+                                onChange={(e) => handleAttributeChange(
+                                    "copies", 
+                                    e.target.value
+                                )}
                             >
                                 <option value="1">1</option>
                                 <option value="2">2</option>
@@ -188,12 +220,20 @@ function Configure() {
                     {/* Nút điều hướng */}
                     <div className="navigation-buttons">
                         <Link to="/print/upload">
-                            <button to="upload" className="back-button" onClick={handleBack} disabled={currentStep === 1}>
+                            <button to="upload" 
+                                className="back-button" 
+                                onClick={handleBack} 
+                                disabled={currentStep === 1}
+                            >
                                 Quay Lại
                             </button>
                         </Link>
                         <Link to="/print/select">
-                            <button to="select" className="next-button" onClick={handleNext} disabled={currentStep === 4}>
+                            <button to="select" 
+                                className="next-button" 
+                                onClick={handleNext} 
+                                disabled={currentStep === 4}
+                            >
                                 Tiếp Theo
                             </button>
                         </Link>

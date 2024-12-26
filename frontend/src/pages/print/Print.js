@@ -80,14 +80,16 @@ function Print() {
 
     const filtered = () => {
 
-        const printList = JSON.parse(sessionStorage.getItem('printList')).filter((print) => {
+        const printList = JSON.parse(sessionStorage.getItem('printList'))
+        .filter((print) => {
             return print.uid === Number(sessionStorage.getItem('uid'));
         });
 
         const fileList = JSON.parse(sessionStorage.getItem('fileList'));
 
         const newPrintList = printList.map((print) => {
-            const configure = JSON.parse(sessionStorage.getItem('configureList')).find((conf) => {
+            const configure = JSON.parse(sessionStorage.getItem('configureList'))
+            .find((conf) => {
                 return conf.cid === print.cid;
             });
             return configure ? { ...print, ...configure } : {};
@@ -95,7 +97,9 @@ function Print() {
 
         newPrintList.map((print) => {
             for (let i = 0; i < print.fid.length; i++) {
-                print.fid[i] = fileList.find((file) => {return file.fid === print.fid[i]}).fileName + ", ";
+                print.fid[i] = fileList.find((file) => {
+                  return file.fid === print.fid[i]
+                }).fileName + ", ";
             }
 
             return print;
@@ -124,8 +128,12 @@ function Print() {
     };
     
     const handleDelete = () => {
-        const newList = JSON.parse(sessionStorage.getItem('printList')).filter((print) => {
-            return (print.uid !== filtered()[key].uid) || (print.cid !==  filtered()[key].cid) || (print.ptid !==  filtered()[key].ptid);
+        const newList = JSON.parse(sessionStorage.getItem('printList'))
+        .filter((print) => {
+            return  (print.uid !== filtered()[key].uid) || 
+                    (print.cid !==  filtered()[key].cid) || 
+                    (print.ptid !==  filtered()[key].ptid)
+                    ;
         });
         sessionStorage.setItem('printList', JSON.stringify(newList));
         window.location.href = "/print";
@@ -164,31 +172,52 @@ function Print() {
                 }}>Đang trống, nhấn vào để thêm mới</p>
               </div>
             )}
-            <div className="list" style={!filtered().length ? {display: 'none'} : {}}>
+            <div className="list" style={!filtered().length ? 
+                {display: 'none'} 
+                : 
+                {}
+              }>
                 {filtered().map((val, key) => {
                 return (
                     <div className="row">
                         <box>{val.fid}</box>
                         <div>
-                            <img src={GreenTick} onClick={() => handleGo(key)} height="24px" className="tick" alt=""/>
-                            <img src={RedCross} onClick={() => handleRemove(key)} height="24px" className="cross" alt=""/>
+                            <img src={GreenTick}
+                              onClick={() => handleGo(key)} 
+                              height="24px" 
+                              className="tick" 
+                              alt=""
+                            />
+                            <img src={RedCross}
+                              onClick={() => handleRemove(key)} 
+                              height="24px" 
+                              className="cross" 
+                              alt=""
+                            />
                         </div>
                     </div>
                 );
                 })} 
             </div>
             {confirmDialog && (
-                <div style={styles.container} onClick={() => handleClose()}>
+                <div style={styles.container} 
+                  onClick={() => handleClose()}>
                 <div style={styles.card}>
                   <div style={styles.icon}>
                     <span style={styles.x_mark}>✘</span>
                   </div>
-                  <p style={styles.message}>Bạn có chắc muốn xóa tiến trình in?</p>
+                  <p style={styles.message}>
+                    Bạn có chắc muốn xóa tiến trình in?
+                  </p>
                   <div style={styles.buttonContainer}>
-                    <button style={styles.button_left} onClick={() => handleClose()}>
+                    <button style={styles.button_left} 
+                      onClick={() => handleClose()}
+                    >
                       Hủy
                     </button>
-                    <button style={styles.button_right} onClick={() => handleDelete()}>
+                    <button style={styles.button_right} 
+                      onClick={() => handleDelete()}
+                    >
                       Xóa
                     </button>
                   </div>

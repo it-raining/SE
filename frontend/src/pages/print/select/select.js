@@ -150,14 +150,24 @@ function PrinterSelect() {
                                 <h3>{printer.name}</h3>
                                 <ul>
                                     <li className={printer.compatible ? "check" : "cross"}>
-                                        {printer.compatible ? "Phù hợp với cấu hình bạn chọn" : "Không phù hợp với cấu hình bạn chọn"}
+                                        {printer.compatible ? 
+                                            "Phù hợp với cấu hình bạn chọn" 
+                                            : 
+                                            "Không phù hợp với cấu hình bạn chọn"}
                                     </li>
                                     <li className={printer.color ? "check" : "cross"}>
                                         {printer.color ? "Có thể in màu" : "Không thể in màu"}
                                     </li>
                                 </ul>
-                                <p className="status" id={(printer.ptid === printerSelected) ? "selected" : printer.status}>
-                                    {(printer.ptid === printerSelected) ? "Đã chọn" : handleStatus(printer.status)}
+                                <p className="status" 
+                                    id={(printer.ptid === printerSelected) ? 
+                                        "selected" 
+                                        : 
+                                        printer.status}>
+                                    {(printer.ptid === printerSelected) ? 
+                                        "Đã chọn" 
+                                        : 
+                                        handleStatus(printer.status)}
                                 </p>
                             </div>
                         </div>
@@ -195,7 +205,15 @@ function PrinterSelect() {
                         Quay lại
                     </button>
                 </Link>
-                    <button className="confirm-button" disabled={!printerSelected} onClick={() => {handleNext(); setConfirmPopup(true); handleClick()}}>
+                    <button className="confirm-button" 
+                        disabled={!printerSelected} 
+                        onClick={() => {
+                            handleNext(); 
+                            setConfirmPopup(true); 
+                            handleClick()
+                            }
+                        }
+                    >
                         In
                     </button>
             </div>

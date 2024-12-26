@@ -11,7 +11,8 @@ function Pay() {
         document.title = 'Thanh toán - SPSO';
     }, []);
     
-    const PaymentList = JSON.parse(sessionStorage.getItem('paymentList')).filter((val) => {
+    const PaymentList = JSON.parse(sessionStorage.getItem('paymentList'))
+    .filter((val) => {
         return val.uid === Number(sessionStorage.getItem('uid'));
     })
     const [opt, setOpt] = useState("all")
@@ -60,8 +61,14 @@ function Pay() {
                 pid: Date.now(),
                 uid: userID,
                 title: "Nạp " + pidCount,
-                time: (((date.getHours() - 1) % 12 + 1) % 24) + ":" + date.getMinutes() + (date.getHours() < 12 ? " AM" : " PM"),
-                date: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
+                time: (((date.getHours() - 1) % 12 + 1) % 24) + 
+                            ":" + date.getMinutes() + 
+                            (date.getHours() < 12 ? " AM" : " PM")
+                        ,
+                date: date.getDate() + 
+                            "/" + date.getMonth() + 
+                            "/" + date.getFullYear()
+                        ,
                 amount: pendingNapLua,
                 status: "Deposit"
             },
@@ -156,8 +163,22 @@ function Pay() {
                         </div> 
                         <p>Số tiền cần trả: <b>{pendingNapLua.toLocaleString()} VND</b></p>
                         <div className="ConfirmDialog-buttons">
-                            <button onClick={handleConfirm} style={{ backgroundColor: "#4CAF50", color: "white" }}>Xác nhận</button>
-                            <button onClick={handleCancel} style={{ backgroundColor: "#f44336", color: "white" }}>Hủy</button>
+                            <button onClick={handleConfirm} 
+                                style={{ 
+                                    backgroundColor: "#4CAF50", 
+                                    color: "white" 
+                                }}
+                            >
+                                Xác nhận
+                            </button>
+                            <button onClick={handleCancel} 
+                                style={{ 
+                                    backgroundColor: "#f44336", 
+                                    color: "white" 
+                                }}
+                            >
+                                Hủy
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -166,7 +187,12 @@ function Pay() {
                 <div className="filter">
                     <div className="search-bar">
                         <img src={Search} className="search-icon" alt=""/>
-                        <input type='search' id="search" onChange={e => setSearchVal(e.target.value)} placeholder="Nhập để tìm kiếm..."/>
+                        <input 
+                            type='search' 
+                            id="search"
+                            onChange={e => setSearchVal(e.target.value)} 
+                            placeholder="Nhập để tìm kiếm..."
+                        />
                     </div>         
                     <div className="field">
                         <select onChange={fieldSelect}>
@@ -193,13 +219,30 @@ function Pay() {
                         return (                         
                             <div className="row">
                                 <table>
-                                    <tr id={val.status === "Pay" ? "pay" : (val.status === "Deposit" ? "deposit" : "other")}>
+                                    <tr id={val.status === "Pay" ? 
+                                        "pay" 
+                                        : 
+                                        (val.status === "Deposit" ? 
+                                            "deposit" 
+                                            : 
+                                            "other"
+                                        )}
+                                    >
                                         <th id="title">{val.title}</th>
                                         <th id="time">{val.time}</th>
                                         <th id="date">{val.date}</th>
                                         <th id="id">{val.pid}</th>
                                         <th id="amount">{val.amount}</th>
-                                        <th id="status">{val.status === "Pay" ? "Thanh toán" : (val.status === "Deposit" ? "Nạp" : "Khác")}</th>
+                                        <th id="status">{val.status === "Pay" ? 
+                                                "Thanh toán" 
+                                                : 
+                                                (val.status === "Deposit" ? 
+                                                    "Nạp" 
+                                                    : 
+                                                    "Khác"
+                                                )
+                                            }
+                                        </th>
                                     </tr> 
                                 </table>
                             </div>

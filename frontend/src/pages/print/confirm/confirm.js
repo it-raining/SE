@@ -68,11 +68,13 @@ function Confirm () {
       
     const confID = Number(sessionStorage.getItem('config'));
 
-    const configure = JSON.parse(sessionStorage.getItem('configureList')).find((conf) => {
+    const configure = JSON.parse(sessionStorage.getItem('configureList'))
+    .find((conf) => {
         return conf.cid === confID;
     });
 
-    const printList = JSON.parse(sessionStorage.getItem('printList')).find((print) => {
+    const printList = JSON.parse(sessionStorage.getItem('printList'))
+    .find((print) => {
       return print.cid === confID;
     })
 
@@ -107,7 +109,11 @@ function Confirm () {
         setIndex((index + 1) % length);
     }
 
-    const cost = 500 * ((newPrint[0].pagesToPrint === "default") ? (file().reduce((sum, file) => sum + file.pageNumber, 0)) : (Number(newPrint[0].pagesToPrint)));
+    const cost = 500 * ((newPrint[0].pagesToPrint === "default") ? 
+      (file().reduce((sum, file) => sum + file.pageNumber, 0)) 
+      : 
+      (Number(newPrint[0].pagesToPrint))
+    )
 
     const curr = sessionStorage.getItem('current');
 
@@ -132,7 +138,10 @@ function Confirm () {
 
     const handleDelete = () => {
       const newList = JSON.parse(sessionStorage.getItem('printList')).filter((print) => {
-          return (print.uid !== newPrint[0].uid) || (print.cid !==  newPrint[0].cid) || (print.ptid !== newPrint[0].ptid);
+          return  (print.uid !== newPrint[0].uid) || 
+                  (print.cid !==  newPrint[0].cid) || 
+                  (print.ptid !== newPrint[0].ptid)
+                ;
       });
       sessionStorage.setItem('printList', JSON.stringify(newList));
     };
@@ -148,8 +157,15 @@ function Confirm () {
                 pid: paymentID,
                 uid: Number(sessionStorage.getItem('uid')),
                 title: "Thanh toán " + payCount,
-                time: (((date.getHours() - 1) % 12 + 1) % 24) + ":" + date.getMinutes() + (date.getHours() < 12 ? " AM" : " PM"),
-                date: date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear(),
+                time: (((date.getHours() - 1) % 12 + 1) % 24) + 
+                        ":" + 
+                        date.getMinutes() + 
+                        (date.getHours() < 12 ? " AM" : " PM")
+                      ,
+                date: date.getDate() + 
+                        "/" + date.getMonth() + 
+                        "/" + date.getFullYear()
+                      ,
                 amount: cost,
                 status: "Pay"
             },
@@ -180,8 +196,8 @@ function Confirm () {
         <div className="Confirm">
             <DocumentDetail
                 fileType="img"
-                filePath={require('../../../assets/wavio.png')}
-                fileName={file()[index].fileName}
+                filePath={require('../../../assets/portrait.png')}
+                fileName={JSON.stringify(configure)}
                 fileCount={file().length}
                 printer={getPrinterName(newPrint[0].ptid)}
                 actionUp={() => fileHandleUp()}
@@ -192,10 +208,34 @@ function Confirm () {
             />
             <div>
                 <div className="panel">
-                    <div id="pay" className="current"> <p>Số lúa cần trả: <t className="money">{cost}</t>&nbsp;</p> <img src={Thoc} className="thoc" alt=""/> </div>
-                    <div id="curr" className="current"> <p>Số lúa hiện tại: <t className="money">{curr}</t>&nbsp;</p> <img src={Thoc} className="thoc" alt=""/> </div>
-                    <div id="after" className="current"> <p>= <t className="money">{curr - cost}</t>&nbsp;</p> <img src={Thoc} className="thoc" alt=""/> </div>
-                    <button id="confirm" onClick={() => handlePay(curr - cost)}>Thanh toán</button>
+                    <div id="pay" className="current">
+                      <p>Số lúa cần trả: 
+                        <t className="money">
+                          {cost}
+                        </t>&nbsp;
+                      </p> <img src={Thoc} className="thoc" alt=""/> 
+                    </div>
+                    <div id="curr" className="current"> 
+                      <p>Số lúa hiện tại: 
+                        <t className="money">
+                          {curr}
+                        </t>&nbsp;
+                      </p> 
+                      <img src={Thoc} className="thoc" alt=""/> 
+                    </div>
+                    <div id="after" className="current"> 
+                      <p>= 
+                        <t className="money">
+                          {curr - cost}
+                        </t>&nbsp;
+                      </p> 
+                      <img src={Thoc} className="thoc" alt=""/> 
+                    </div>
+                    <button id="confirm" 
+                      onClick={() => handlePay(curr - cost)}
+                    >
+                      Thanh toán
+                    </button>
                     <Link to="/print">
                         <button id="back">Quay về hàng chờ</button>
                     </Link>
@@ -209,10 +249,14 @@ function Confirm () {
                   </div>
                   <p style={styles.message}>Thanh toán thành công!</p>
                   <div style={styles.buttonContainer}>
-                    <button style={styles.button} onClick={handleToCheckInList}>
+                    <button style={styles.button} 
+                      onClick={handleToCheckInList}
+                    >
                       Tới danh sách chờ in
                     </button>
-                    <button style={styles.button} onClick={handleToHome}>
+                    <button style={styles.button} 
+                      onClick={handleToHome}
+                    >
                       Về trang chủ
                     </button>
                   </div>

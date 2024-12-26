@@ -33,13 +33,16 @@ function History() {
             .find((conf) => {
                 return conf.cid === print.cid;
             });
-            return configure ? { ...print, ...configure, title : "", printer: printerList.name } : {};
+            return configure ? 
+                { ...print, ...configure, title : "", printer: printerList.name } : {};
         });
 
 
         newList.map((print) => {
             for (let i = 0; i < print.fid.length; i++) {
-                print.title += fileList.find((file) => {return file.fid === print.fid[i]}).fileName + ", ";
+                print.title += fileList.find((file) => {
+                    return file.fid === print.fid[i]
+                }).fileName + ", ";
             }
             return print;
         });
@@ -63,13 +66,16 @@ function History() {
             .find((conf) => {
                 return conf.cid === print.cid;
             });
-            return configure ? { ...print, ...configure, title : "", printer: printerList.name } : {};
+            return configure ? 
+                { ...print, ...configure, title : "", printer: printerList.name } : {};
         });
 
 
         newList.map((print) => {
             for (let i = 0; i < print.fid.length; i++) {
-                print.title += fileList.find((file) => {return file.fid === print.fid[i]}).fileName + ", ";
+                print.title += fileList.find((file) => {
+                    return file.fid === print.fid[i]
+                }).fileName + ", ";
             }
             return print;
         });
@@ -124,11 +130,14 @@ function History() {
         
         PrintedList.map((current) => {
             const tempList = PrintedList.filter((val) => {
-                return val.cid === current.cid;
+                return  (val.uid !== current.uid) || 
+                        (val.cid !== current.cid) || 
+                        (val.ptid !== current.ptid); 
             });
             if (tempList.length > 1) {
                 let count = 0;
-                const newList = JSON.parse(sessionStorage.getItem('printedList')).filter((val) => {
+                const newList = JSON.parse(sessionStorage.getItem('printedList'))
+                .filter((val) => {
                     if (count < 1) { ++count; return val;}
                     return val.cid !== current.cid; 
                 })
@@ -139,8 +148,11 @@ function History() {
         
         PrintingList.map((current) => {
             if (current.progress && current.progress[1] < Date.now()) {
-                const newPrintingList = JSON.parse(sessionStorage.getItem('printingList')).filter((val) => {
-                    return val.cid !== current.cid; 
+                const newPrintingList = JSON.parse(sessionStorage.getItem('printingList'))
+                .filter((val) => {
+                    return  (val.uid !== current.uid) || 
+                            (val.cid !== current.cid) || 
+                            (val.ptid !== current.ptid); 
                 })
 
                 const newPrintedList = [
@@ -166,26 +178,56 @@ function History() {
             
             {!detailOn && (
             <div className="tab-list">
-                <button id={status === "printingList" ? "active" : "inactive"} onClick={() => setStatus('printingList')}>
+                <button id={status === "printingList" ? 
+                        "active"
+                        : 
+                        "inactive"
+                    } onClick={() => setStatus('printingList')
+                }>
                     <p>Đang in</p>
-                    <box className="notif" id={status === "printingList" ? "active" : "inactive"}>{PrintingList.length}</box>
+                    <box className="notif" id={status === "printingList" ? 
+                            "active" 
+                            : 
+                            "inactive"
+                        }
+                    >
+                        {PrintingList.length}
+                    </box>
                 </button>
-                <button id={status === "printedList" ? "active" : "inactive"} onClick={() => setStatus('printedList')}>   
+                <button id={status === "printedList" ?
+                        "active" 
+                        : 
+                        "inactive"
+                    } 
+                    onClick={() => setStatus('printedList')
+                }>   
                     <p>Đã in</p>   
-                    <box className="notif" id={status === "printedList" ? "active" : "inactive"}>{PrintedList.length}</box>              
+                    <box className="notif"
+                        id={status === "printedList" ? 
+                            "active" 
+                            : 
+                            "inactive"
+                        }
+                    >
+                        {PrintedList.length}
+                    </box>              
                 </button>
             </div>)}
             {!detailOn && (
             <div className="filter">
                 <div className="search-bar">
                     <img src={Search} className="search-icon" alt=""/>
-                    <input type='search' id="search" onChange={e => setSearchVal(e.target.value)} placeholder="Nhập để tìm kiếm..."/>
+                    <input type='search' 
+                        id="search" 
+                        onChange={e => setSearchVal(e.target.value)} 
+                        placeholder="Nhập để tìm kiếm..."
+                    />
                 </div>              
             </div>)}
             {detailOn && (
                 <DocumentDetail
                     fileType="img"
-                    filePath={require('../../assets/baocao.jpg')}
+                    filePath={require('../../assets/portrait.png')}
                     fileName={file()[index].fileName}
                     fileCount={file().length}
                     printer={printList(status)[key].printer}
@@ -204,20 +246,47 @@ function History() {
                 {(!detailOn && (status === "printingList" && (filteredPrintingList().map((val, key) => {
                     return (
                         <div className="row" id="printing" onClick={() => handleDetail(key)}>
-                            <img src={val.thumb} id="picture" alt=""/>
+                            <img src={require('../../assets/portrait.png')}
+                                style={
+                                    val.color === "monochrome" ?
+                                        {filter:'monochrome(1)'}
+                                        :
+                                        {
+                                    }
+                                }
+                                id="picture"
+                                alt=""
+                            />
                             <div className="info">
                                 <p className="title">{val.title}</p>
                                 <progress value={val.progress && val.progress[0]?
-                                    ((val.progress[0] > Date.now()) ? 0
-                                        : ((val.progress[1] >= Date.now()) ?
-                                        (Date.now() - val.progress[0]) / (val.progress[1] - val.progress[0])
-                                        : 1))  : null}/>
+                                    (
+                                        (val.progress[0] > Date.now()) ? 
+                                            0 
+                                            :
+                                            ((val.progress[1] >= Date.now()) ?
+                                                (Date.now() - val.progress[0]) / (val.progress[1] - val.progress[0])
+                                                : 
+                                                1
+                                            )
+                                        ) 
+                                        :
+                                        null
+                                    }/>
                                 <p style={{display: "inline", marginLeft:"50px"}}>
                                     {val.progress  && val.progress[0]?
-                                        (parseFloat((val.progress[0] > Date.now()) ? 0
-                                        : ((val.progress[1] >= Date.now()) ?
-                                        100 * (Date.now() - val.progress[0]) / (val.progress[1] - val.progress[0])
-                                        : 100)).toFixed(0) + '%') : "Lỗi"}
+                                        (
+                                            parseFloat((val.progress[0] > Date.now()) ?
+                                                0
+                                                : ((val.progress[1] >= Date.now()) ?
+                                                    100 * (Date.now() - val.progress[0]) / (val.progress[1] - val.progress[0])
+                                                    :
+                                                    100
+                                                )
+                                            ).toFixed(0) + '%'
+                                        )
+                                        : "Lỗi"
+                                    }
                                 </p>
                             </div>
                         </div>
@@ -226,7 +295,16 @@ function History() {
                 ((!detailOn && status === "printedList" && (filteredPrintedList().map((val, key) => {
                     return (
                         <div className="row" id="printed" onClick={() => handleDetail(key)}>
-                            <img src={val.thumb} id="picture" alt=""/>
+                            <img src={require('../../assets/portrait.png')}
+                                style={
+                                    val.color === "monochrome" ?
+                                    {filter:'grayscale(1)', border: '1px solid #aeaeae'}
+                                    :
+                                    {border: '1px solid #aeaeae'}
+                                }
+                                id="picture"
+                                alt=""
+                            />
                             <div className="info">
                                 <p className="title">{val.title}</p>
                             </div>

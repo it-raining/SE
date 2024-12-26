@@ -8,11 +8,23 @@ function Printer() {
         document.title = 'Danh sách máy in - SPSO';
     }, []);
 
-    const printers = JSON.parse(sessionStorage.getItem('printerList')).map((current) => {
-        const printingList = JSON.parse(sessionStorage.getItem('printerList')).filter((val) => {
+    const printers = JSON.parse(sessionStorage.getItem('printerList'))
+    .map((current) => {
+        const printingList = JSON.parse(sessionStorage.getItem('printerList'))
+        .filter((val) => {
             return val.ptid === current.ptid;
         })
-        current.status = (printingList && printingList[0] && printingList[0].cid && current.status !== "busy") ? "working" : current.status;
+        current.status = 
+            (
+                printingList &&
+                printingList[0] &&
+                printingList[0].cid &&
+                current.status !== "busy"
+            ) ? 
+                "working" 
+                : 
+                current.status
+        ;
         return current;
     })
     const [expandedPrinter, setExpandedPrinter] = useState(null);
@@ -29,16 +41,40 @@ function Printer() {
                             className={`printer-item ${"compatible"}`}
                             onClick={() => handlePrinterClick(printer.name)}
                         >
-                            <img src={printer.image} alt={printer.name} className="printer-image" />
+                            <img src={printer.image}
+                                alt={printer.name}
+                                className="printer-image" 
+                            />
                             <div className="printer-details">
                                 <h3>{printer.name}</h3>
                                 <ul>
-                                    <li className={printer.color ? "check" : "cross"}>
-                                        {printer.color ? "Có thể in màu" : "Không thể in màu"}
+                                    <li className={
+                                        printer.color ? "check" : "cross"
+                                        }
+                                    >
+                                        {printer.color ? 
+                                            "Có thể in màu" 
+                                            : 
+                                            "Không thể in màu"
+                                        }
                                     </li>
                                 </ul>
-                                <p className="status" id={(printer.status === "busy") ? "busy" : "free"}>
-                                    {printer.status === "free" ? "Rảnh" : (printer.status === "working" ? "Đang in" : "Bận")}
+                                <p className="status"
+                                    id={(printer.status === "busy") ? 
+                                        "busy" 
+                                        : 
+                                        "free"
+                                    }
+                                    >
+                                    {printer.status === "free" ? 
+                                        "Rảnh" 
+                                        : 
+                                        (printer.status === "working" ? 
+                                            "Đang in" 
+                                            : 
+                                            "Bận"
+                                        )
+                                    }
                                 </p>
                             </div>
                         </div>
@@ -46,7 +82,10 @@ function Printer() {
                             <div className="printer-extra-details">
                                 <p>Khổ giấy: {printer.paper + ''}</p>
                                 <p>Tốc độ: {printer.speed}ppm </p>
-                                <p>Độ phân giải in: {printer.resolution[0]} x {printer.resolution[1]} dpi</p>
+                                <p>Độ phân giải in: 
+                                    {printer.resolution[0]} x 
+                                    {printer.resolution[1]} dpi
+                                </p>
                                 <p>Địa chỉ: {printer.location}</p>
                             </div>
                         )}

@@ -25,7 +25,16 @@ function Upload() {
         const file = event.target.files[0]; // Lấy file từ input
         fileBrowseHandler(event);
         if (file) {
-            setFileList([{ fid: Date.now(), fileName: file.name, filePath: `./docs/${file.name}`, uri: fileUrl, pageNumber: 16, fileThumbnail: fileUrl, fileType: "pdf" }, ...fileList]);
+            setFileList([{  fid: Date.now(), 
+                            fileName: file.name, 
+                            filePath: `./docs/${file.name}`, 
+                            uri: fileUrl, 
+                            pageNumber: 16, 
+                            fileThumbnail: fileUrl, 
+                            fileType: "pdf"
+                        }
+                        , ...fileList
+                    ])
         }
     };
 
@@ -70,7 +79,12 @@ function Upload() {
                             <div>
                                 <span className="icon">&#8681;</span>
                                 <p><i>Thêm tập tin</i></p>
-                                <small><b>Định dạng cho phép:</b> .doc, .docx, .pdf, .png</small><br/>
+                                <small>
+                                    <b>
+                                        Định dạng cho phép:
+                                    </b> 
+                                    .doc, .docx, .pdf, .png
+                                </small><br/>
                                 <small><b>Kích thước tối đa:</b> 100MB</small>
                             </div>
                         </label>
@@ -80,7 +94,10 @@ function Upload() {
                             Hủy
                         </button>
                         <Link to="/print/configure">
-                            <button className="next-button" disabled={fileList.length === 0} onClick={() => nextAction()}>
+                            <button className="next-button" 
+                                disabled={fileList.length === 0} 
+                                onClick={() => nextAction()}
+                            >
                                 Tiếp Theo
                             </button>
                         </Link>

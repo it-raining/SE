@@ -1,7 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter, 
+  Routes, 
+  Route, 
+  Link, 
+  Navigate 
+} from 'react-router-dom';
 import './App.css';
-import Sidebar from './components/Sidebar';import "@cyntler/react-doc-viewer/dist/index.css";
+import Sidebar from './components/Sidebar';
 
 import Homepage from './pages/homepage/Homepage';
 import History from './pages/history/History';
@@ -28,7 +34,16 @@ import SettingDarkBlue from "./assets/settingdarkblue.png";
 import SupportDarkBlue from "./assets/supportdarkblue.png";
 import ExitRed from "./assets/exitred.png";
 
-import { UserList, PaymentList, PrintList, PrintingList, PrintedList, ConfigureList, fileList, PrinterList } from './localData';
+import {  
+  UserList, 
+  PaymentList, 
+  PrintList, 
+  PrintingList, 
+  PrintedList, 
+  ConfigureList, 
+  fileList, 
+  PrinterList 
+} from './localData';
 
 function Login() {
 
@@ -128,9 +143,29 @@ function App() {
       <div>
         <header className="Banner">
           <img src={require('./assets/headtitle.png')} className="title" alt="" />
-          <nav className="menu-bar" style={(window.location.pathname === "/login" || sessionStorage.getItem('login')) ? { display: 'none' } : {}}>
-            <Link to="/login" onClick={() => setLoginAccess(!loginAccess)}>Đăng nhập</Link> &nbsp;&nbsp;&nbsp;       
-            <Link to="/contact">Liên hệ</Link> &nbsp;&nbsp;&nbsp;  
+          <nav className="menu-bar"
+            style={(
+                window.location.pathname === "/login" || 
+                sessionStorage.getItem('login')
+              ) ?
+                { display: 'none' } 
+                : 
+                {}
+            }
+          >
+            <Link to="/login"
+              onClick={() => setLoginAccess(!loginAccess)}>
+              Đăng nhập
+            </Link>
+
+            &nbsp;&nbsp;&nbsp; 
+
+            <Link to="/contact">
+              Liên hệ
+            </Link>
+
+            &nbsp;&nbsp;&nbsp;  
+
           </nav>
           <div>
             <img 
@@ -145,35 +180,57 @@ function App() {
       </div>
       {showUserPanel && (
           <div className="UserPanel">
-            <p id="username">{sessionStorage.getItem('username')}<t style={{color:"#aeaeae", fontWeight:"300", fontSize:"16px"}}>&nbsp;#{sessionStorage.getItem('uid')}</t></p>
+            <p id="username">
+              {sessionStorage.getItem('username')}
+              <t style={{color:"#aeaeae", fontWeight:"300", fontSize:"16px"}}>
+                &nbsp;#{sessionStorage.getItem('uid')}
+              </t>
+            </p>
             <p id="email">{sessionStorage.getItem('email')}</p>
             <p id="current">
-              Số dư: <t style={{color:"black", fontWeight:"600", paddingLeft:"16px"}}>{sessionStorage.getItem('current')}</t> 
+              Số dư: 
+              <t style={{color:"black", fontWeight:"600", paddingLeft:"16px"}}>
+                {sessionStorage.getItem('current')}
+              </t> 
               <img src={Thoc} height='20px' style={{marginLeft:"8px", marginRight:"4px"}} alt=""/>
-              <Link to="/pay" id="plus" onClick={() => setShowUserPanel(false)} style={{
-                color:"orange", 
-                fontSize:"24px", 
-                fontWeight:"690"
-                }}>+</Link>
+              <Link to="/pay" id="plus"
+                onClick={() => setShowUserPanel(false)}
+                style={{
+                  color:"orange", 
+                  fontSize:"24px", 
+                  fontWeight:"690"
+                  }
+                }>+</Link>
             </p>
-            <hr width="300px" color="#aeaeae" style={{marginLeft:"auto", marginRight:"auto", marginTop:"10px"}}></hr>
+            <hr width="300px" color="#aeaeae"
+              style={{marginLeft:"auto", marginRight:"auto", marginTop:"10px"}}
+            />
             <div className="options">
               <div style={{display:"flex"}}>
-                <Link to="/info" className="option" onClick={() => setShowUserPanel(false)} id="info">
+                <Link to="/info" className="option"
+                  onClick={() => setShowUserPanel(false)} id="info">
                   <img src={InfoDarkBlue} className="panel-icon" alt=""/>
                   <p>Tài khoản</p>
                 </Link>
-                <Link to="/setting" className="option" onClick={() => setShowUserPanel(false)} id="setting">
+                <Link to="/setting" className="option"
+                  onClick={() => setShowUserPanel(false)} id="setting">
                   <img src={SettingDarkBlue} className="panel-icon" alt=""/>
                   <p>Tùy chỉnh</p>
                 </Link>
               </div>
               <div style={{display:"flex", marginTop:"8px"}}>
-                <Link to="/support" className="option" onClick={() => setShowUserPanel(false)} id="support">
+                <Link to="/support" className="option"
+                  onClick={() => setShowUserPanel(false)} id="support">
                   <img src={SupportDarkBlue} className="panel-icon" alt=""/>
                   <p>Hỗ trợ</p>
                 </Link>
-                <Link to="/" className="option" onClick={() => {setShowUserPanel(false); sessionStorage.removeItem('login')}} id="logout">
+                <Link to="/" className="option"
+                  onClick={() => {
+                    setShowUserPanel(false);
+                    sessionStorage.removeItem('login')
+                  }} 
+                  id="logout"
+                >
                   <img src={ExitRed} className="panel-icon" alt=""/>
                   <p>Đăng xuất</p>
                 </Link>
