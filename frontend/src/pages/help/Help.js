@@ -8,7 +8,7 @@ import RightArrowWhite from "../../assets/rightarrowwhite.png";
 function Help() {
 
     useEffect(() => {
-        document.title = 'Hướng dẫn - SPSO';
+        document.title = 'Hướng dẫn';
     }, []);
 
     return(
