@@ -5,7 +5,7 @@ import "./Printer.css";
 function Printer() {
 
     useEffect(() => {
-        document.title = 'Danh sách máy in - SPSO';
+        document.title = 'Danh sách máy in';
     }, []);
 
     const printers = JSON.parse(sessionStorage.getItem('printerList'))
