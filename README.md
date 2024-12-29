@@ -13,7 +13,7 @@
 LATEX: [https://www.overleaf.com/read/sqyhrqxsmfjw#1b4609](https://www.overleaf.com/read/sqyhrqxsmfjw#1b4609)
 
 # Video demo
-[https://drive.google.com/file/d/160HKuLdpOiZxFvKx_PLKe3n9yXGwsGWQ/view?usp=sharing]
+[https://drive.google.com/file/d/160HKuLdpOiZxFvKx_PLKe3n9yXGwsGWQ/view?usp=sharing](https://drive.google.com/file/d/160HKuLdpOiZxFvKx_PLKe3n9yXGwsGWQ/view?usp=sharing)
 
 # Getting Started with Create React App
 
